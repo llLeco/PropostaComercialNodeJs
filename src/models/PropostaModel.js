@@ -2,21 +2,22 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 const PropostaSchema = new mongoose.Schema({
+  account_id: { type: String, required: true },
   razao_social: { type: String, required: true },
   nome: { type: String, required: true },
   cnpj: { type: String, required: true },
   email_cobranca: { type: String, required: true },
-  numero_usuarios: { type: Number, required: true },
-  desconto: { type: Number, required: true },
-  numero_ativos: { type: Number, required: true },
-  ajuste_por_volume: { type: Number, required: true },
+  numero_usuarios: { type: String, required: true },
+  desconto: { type: String, required: true },
+  numero_ativos: { type: String, required: true },
+  ajuste_por_volume: { type: String, required: true },
   dashboardAvancadoCheckbox: { type: String, required: false },
   setupWhiteLabelCheckbox: { type: String, required: false },
   slaCheckbox: { type: String, required: false },
   mensalidadeWhiteLabelCheckbox: { type: String, required: false },
   horaDesenvolvimentoCheckbox: { type: String, required: false },
-  qntd_horas: { type: Number, required: false },
-  taxa_unica_ativacao: { type: Number, required: true },
+  qntd_horas: { type: String, required: false },
+  taxa_unica_ativacao: { type: String, required: true },
   observacoes: { type: String, required: false },
 });
 
@@ -28,7 +29,12 @@ function Proposta(body) {
   this.proposta = null;
 }
 
-Proposta.prototype.register = async function() {
+Proposta.prototype.compareId = function(account_id) {
+  return account_id === req.session.user._id;
+}
+
+Proposta.prototype.register = async function(account_id) {
+  this.body.account_id = account_id;
   this.valida();
   if(this.errors.length > 0) return;
   this.proposta = await PropostaModel.create(this.body);
@@ -63,9 +69,6 @@ Proposta.prototype.valida = function() {
   if(!validator.isNumeric(this.body.taxa_unica_ativacao)) {
     this.errors.push('Taxa única de ativação deve ser um número.');
   }
-  if(!validator.isNumeric(this.body.qntd_horas)) {
-    this.errors.push('Quantidade de horas deve ser um número.');
-  }
 };
 
 Proposta.prototype.cleanUp = function() {
@@ -76,6 +79,7 @@ Proposta.prototype.cleanUp = function() {
   }
 
   this.body = {
+    account_id: this.body.account_id,
     razao_social: this.body.razao_social,
     nome: this.body.nome,
     cnpj: this.body.cnpj,

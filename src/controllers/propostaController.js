@@ -9,7 +9,7 @@ exports.index = (req, res) => {
 exports.register = async(req, res) => {
   try {
     const proposta = new Proposta(req.body);
-    await proposta.register();
+    await proposta.register(req.session.user._id);
 
     if(proposta.errors.length > 0) {
       req.flash('errors', proposta.errors);

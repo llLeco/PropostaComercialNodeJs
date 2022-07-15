@@ -17,6 +17,11 @@ route.post('/login/register', loginController.register);
 route.post('/login/login', loginController.login);
 route.get('/login/logout', loginController.logout);
 
+// Rotas de tabela
+route.get('/tabela/index/:id', loginRequired, tabelaController.index);
+route.post('/tabela/edit/:id', loginRequired, tabelaController.edit);
+route.post('/tabela/register', loginRequired, tabelaController.register);
+
 // Rotas de proposta
 route.get('/proposta/index', loginRequired, propostaController.index);
 route.post('/proposta/register', loginRequired, propostaController.register);
@@ -24,9 +29,6 @@ route.get('/proposta/index/:id', loginRequired, propostaController.editIndex);
 route.post('/proposta/edit/:id', loginRequired, propostaController.edit);
 route.get('/proposta/delete/:id', loginRequired, propostaController.delete);
 
-// Rotas de tabela
-route.get('/tabela/index/:id', loginRequired, tabelaController.index);
-route.post('/tabela/edit/:id', loginRequired, tabelaController.edit);
-route.post('/tabela/register', loginRequired, tabelaController.register);
+// route.get('/proposta/gerar/:id', loginRequired, propostaController.gerar);
 
 module.exports = route;

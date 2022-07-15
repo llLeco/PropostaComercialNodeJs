@@ -7,6 +7,8 @@
                     <form action="/proposta/register" method="POST">
                         <% } %>
                             <input type="hidden" name="_csrf" value=<%=csrfToken %>>
+                            <input type="hidden" name="account_id" value=<%=proposta.account_id %>>
+                            
 
                             <div class="conteiner" style="margin: 20px;">
 
@@ -136,7 +138,10 @@
 
                                         </div>
 
+                                        <!-- Modal para vizualizacao previa -->
+                                        
                                         <button type="submit" class="btn btn-primary my-4">Gerar proposta</button>
+                                        <!-- <button type="submit" class="btn btn-primary my-4">Exportar Proposta</button> -->
 
                                 </div>
                             </div>

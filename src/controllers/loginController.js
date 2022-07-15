@@ -44,7 +44,7 @@ exports.login = async function(req, res) {
     req.flash('success', 'Você entrou no sistema.');
     req.session.user = login.user;
     req.session.save(function() {
-      return res.redirect('/login/index');
+      return res.redirect('/');
     });
   } catch(e) {
     console.log(e);

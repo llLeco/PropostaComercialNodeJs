@@ -1,51 +1,80 @@
 <%- include('includes/head'); %>
-<%- include('includes/nav'); %>
+    <%- include('includes/nav'); %>
 
 
-<div class="conteiner my-4">
-    <div class="row">
-        <div class="col-4">
-            <div class="createBtn">
-                <a href="/proposta/index" class="btn btn-primary">
-                    <button type="button" class="btn btn-primary btn-lg">Criar Proposta Comercial</button>
-                </a>
+        <div class="conteiner text-center" style="margin: 20px; padding: 0px 80px;">
+            <div class="row">
+                <% if(usuario != null) { %>
+
+                    <div class="col-md-12">
+                        <h1>
+                            Página Inicial
+                        </h1>
+                        <p>
+                            Crie, edite e exclua suas Propostas Comerciais
+                        </p>
+                    </div>
+
+                    <div class="conteiner my-4">
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="createBtn">
+                                    <a href="/proposta/index" class="btn btn-primary">
+                                        <button type="button" class="btn btn-primary btn-lg">Criar Proposta
+                                            Comercial</button>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <% if(tabelas.length> 0) { %>
+
+                                    <% tabelas.forEach(tabela=> { %>
+
+                                        <div class="tableBtn">
+                                            <a href="/tabela/index/<%= tabela._id %>" class="btn btn-dark">
+                                                <button type="button" class="btn btn-dark btn-lg">Editar tabela de
+                                                    valores</button>
+                                            </a>
+                                        </div>
+                                    <% }); %>
+                                <% } %>
+                            </div>
+                        </div>
+
+                    </div>
+
+                
+                        <% if(propostas.length > 0 ) { %>
+                            <% propostas.forEach((proposta, req) => { %>
+
+                                <% if( usuario  === proposta.account_id && usuario != null) { %>
+
+                                    <div class="card my-2 text-center" style="width: 12rem; margin: 10px;">
+                                        <img class="card-img-top" src="/frontend/assets/img/logoiliotcut.png" alt="Card image cap" style="width: 50%; margin: auto; padding: 10px;">
+                                        <div class="card-body">
+                                        <h5 class="card-title" style="font-size: 14px;">Proposta Comercial de <%=proposta.nome%></h5>
+                                        <a href="/proposta/index/<%= proposta._id %>" class="btn btn-primary my-1"style="font-size: 14px;">Ver ou Editar</a>
+                                        <a href="/proposta/delete/<%= proposta._id %>" class="btn btn-danger my-1"style="font-size: 14px;">Excluir</a>
+                                        </div>
+                                    </div>
+
+                                <% } %>
+                            <% }); %>       
+                        <% } %>
+
+                <% } else { %>
+                    <div class="col-md-12 my-4">
+                        <h1>Faça o login para acessar o sistema</h1>
+                        <button type="button" class="btn btn-primary btn-lg my-4"> <a href="/login/index" class="btn btn-primary btn-lg">Entrar no sistema</a>
+                    </div>
+                <% } %>
             </div>
         </div>
 
-        <div class="col-4">
-            <% if(tabelas.length > 0) { %>
-            
-                <% tabelas.forEach(tabela => { %>
-            
-                    <div class="tableBtn">
-                        <a href="/tabela/index/<%= tabela._id %>" class="btn btn-dark">
-                            <button type="button" class="btn btn-dark btn-lg">Editar tabela de valores</button>
-                        </a>
-                    </div>
-            
-                <% }); %>
-            
-            <% } %>
-        </div>
-    </div>
-</div>
 
 
 
 
-<% if(propostas.length > 0) { %>
-
-    <% propostas.forEach(proposta => { %>
-
-        <div class="tableBtn my-4">
-            <a href="/proposta/index/<%= proposta._id %>" class="btn btn-primary">
-                <button type="button" class="btn btn-primary btn-lg">Editar proposta de <%=proposta.nome%> </button>
-            </a>
-        </div>
-
-    <% }); %>
-
-<% } %>
-
-
-<%- include('includes/footer'); %>
+        <%- include('includes/footer'); %>
