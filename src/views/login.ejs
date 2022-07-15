@@ -1,0 +1,42 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+<div class="title">
+
+    <!-- <img src="./frontend/assets/img/logoiliotcut.png" alt="imgLogo"> -->
+    <h1>Faça o login ou cadastre-se abaixo</h1>
+
+</div>
+
+<%- include('includes/messages'); %>
+
+<section class="login-main">
+
+  <div class="login-container">
+    <div class="buttonsForm">
+      <div class="btnColor"></div>
+      <button id="btnSignin">Entrar</button>
+      <button id="btnSignup">Registrar</button>
+    </div>
+
+    <form id="signin" class="form-login" action="/login/login" method="POST">
+      <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+      <input type="email" placeholder="Email" name="email" required />
+      <i class="fas fa-envelope iEmail"></i>
+      <input type="password" placeholder="Password" name="password" required />
+      <i class="fas fa-lock iPassword"></i>
+      <button type="submit">Entrar</button>
+    </form>
+
+    <form id="signup" class="form-cadastro" action="/login/register" method="POST">
+      <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+      <input type="email" placeholder="Email" name="email" required />
+      <i class="fas fa-envelope iEmail"></i>
+      <input type="password" placeholder="Password" name="password" required />
+      <i class="fas fa-lock iPassword"></i>
+      <button type="submit">Registrar</button>
+    </form>
+  </div>
+</section>
+
+<%- include('includes/footer'); %> 

@@ -1,0 +1,146 @@
+<%- include('includes/head-proposta') %>
+    <%- include('includes/nav') %>
+
+        <% if(proposta._id) { %>
+            <form action="/proposta/edit/<%= proposta._id %>" method="POST">
+                <% } else { %>
+                    <form action="/proposta/register" method="POST">
+                        <% } %>
+                            <input type="hidden" name="_csrf" value=<%=csrfToken %>>
+
+                            <div class="conteiner" style="margin: 20px;">
+
+                                <div class="row">
+
+                                    <div class="col-md-12 text-center">
+                                        <h1>Cadastro de Proposta</h1>
+                                        <p>Preencha o Formulario abaixo para gerar uma proposta comercial</p>
+                                    </div>
+
+                                    <%- include('includes/messages') %>
+
+                                        <div class="col-6 my-4">
+                                            <label for="">Razão Social</label>
+                                            <input value="<%= proposta.razao_social %>" type="text" class="form-control" id=""
+                                                placeholder="Razão Social" name="razao_social">
+
+                                            <label for="">Nome</label>
+                                            <input value="<%= proposta.nome %>" type="text" class="form-control" id=""
+                                                placeholder="Nome" name="nome">
+                                        </div>
+
+
+                                        <div class="col-6 my-4">
+                                            <label for="">CNPJ</label>
+                                            <input value="<%= proposta.cnpj %>" type="text" class="form-control" id=""
+                                                placeholder="CNPJ" name="cnpj">
+
+                                            <label for="">Email de Cobrança</label>
+                                            <input value="<%= proposta.email_cobranca %>" type="email" class="form-control" id=""
+                                                placeholder="Email de Cobrança" name="email_cobranca">
+                                        </div>
+
+                                        <div class="col-6 my-4">
+                                            <p class="">FSM: Gestão de Ordens de Serviço</p>
+
+                                            <label for="">Número de usuários</label>
+                                            <input value="<%= proposta.numero_usuarios %>" type="text" class="form-control" id=""
+                                                placeholder="Número de usuários" name="numero_usuarios">
+
+                                            <label for="">Desconto</label>
+                                            <input value="<%= proposta.desconto %>" type="text" class="form-control" id=""
+                                                placeholder="Desconto" name="desconto">
+                                        </div>
+
+                                        <div class="col-6 my-4">
+                                            <p class="">PCM: Gestão de Manutenção de Ativos </p>
+
+                                            <label for="">Número de ativos</label>
+                                            <input value="<%= proposta.numero_ativos %>" type="text" class="form-control" id=""
+                                                placeholder="Número de ativos" name="numero_ativos">
+
+                                            <label for="">Ajuste por volume</label>
+                                            <input value="<%= proposta.ajuste_por_volume %>" type="text" class="form-control" id=""
+                                                placeholder="Ajuste por volume" name="ajuste_por_volume">
+                                        </div>
+
+                                        <div class="col-6 my-4"> 
+
+                                            <% if(proposta.dashboardAvancadoCheckbox === "on"){ %>
+                                            <input  class="form-check-input" type="checkbox"
+                                                id="dashboardAvancadoCheckbox" name="dashboardAvancadoCheckbox" checked>
+                                            <% } else { %>
+                                            <input  class="form-check-input" type="checkbox"
+                                                id="dashboardAvancadoCheckbox" name="dashboardAvancadoCheckbox">
+                                            <% } %>
+                                            <label class="form-check-label" for="dashboardAvancadoCheckbox">Dashboard
+                                                Avançado</label>
+                                                
+                                            <br>
+                                            <% if(proposta.setupWhiteLabelCheckbox === "on"){ %>
+                                            <input  class="form-check-input" type="checkbox"
+                                                id="setupWhiteLabelCheckbox" name="setupWhiteLabelCheckbox" checked>
+                                            <% } else { %>
+                                            <input  class="form-check-input" type="checkbox"
+                                                id="setupWhiteLabelCheckbox" name="setupWhiteLabelCheckbox">
+                                            <% } %>
+                                            <label class="form-check-label" for="setupWhiteLabelCheckbox">Setup white
+                                                label</label>
+
+                                            <br>
+                                            <% if(proposta.slaCheckbox === "on"){ %>
+                                            <input  class="form-check-input" type="checkbox"
+                                                id="slaCheckbox" name="slaCheckbox" checked>
+                                            <% } else { %>
+                                            <input  class="form-check-input" type="checkbox"
+                                                id="slaCheckbox" name="slaCheckbox">
+                                            <% } %>
+                                            <label class="form-check-label" for="slaCheckbox">SLA</label>
+
+                                            <br>
+                                            <% if(proposta.mensalidadeWhiteLabelCheckbox === "on"){ %>
+                                            <input  class="form-check-input" type="checkbox"
+                                                id="mensalidadeWhiteLabelCheckbox" name="mensalidadeWhiteLabelCheckbox" checked>
+                                            <% } else { %>
+                                            <input  class="form-check-input" type="checkbox"
+                                                id="mensalidadeWhiteLabelCheckbox" name="mensalidadeWhiteLabelCheckbox">
+                                            <% } %>
+                                            <label class="form-check-label"
+                                                for="mensalidadeWhiteLabelCheckbox">Mensalidade white label</label>
+
+                                            <br>
+                                            <% if(proposta.horaDesenvolvimentoCheckbox === "on"){ %>
+                                            <input  class="form-check-input col-2"
+                                                type="checkbox" id="horaDesenvolvimentoCheckbox"
+                                                name="horaDesenvolvimentoCheckbox" checked>
+                                            <% } else { %>
+                                            <input  class="form-check-input col-2"
+                                                type="checkbox" id="horaDesenvolvimentoCheckbox"
+                                                name="horaDesenvolvimentoCheckbox">
+                                            <% } %>
+                                            <label class="form-check-label col-6"
+                                                for="horaDesenvolvimentoCheckbox">Hora de Desenvolvimento</label>
+                                            <input value="<%= proposta.qntd_horas %>" type="text" class="form-control col-4" id=""
+                                                placeholder="Qntd. de horas" name="qntd_horas" style="display:inline;">
+
+                                        </div>
+
+                                        <div class="col-6 my-4">
+                                            <label for="">Taxa única de ativação</label>
+                                            <input value="<%= proposta.taxa_unica_ativacao %>" type="text" class="form-control" id=""
+                                                placeholder="Taxa única de ativação" name="taxa_unica_ativacao">
+
+                                            <label for="">Observações</label>
+                                            <textarea class="form-control"
+                                                id="exampleFormControlTextarea1" rows="3" name="observacoes"><%= proposta.observacoes %></textarea>
+
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary my-4">Gerar proposta</button>
+
+                                </div>
+                            </div>
+
+                    </form>
+
+                    <%- include('includes/footer') %>

@@ -1,0 +1,351 @@
+<%- include('includes/head-proposta') %>
+<%- include('includes/nav') %>
+
+<section id="fullForm">
+    <div id="formulario">
+        <div id="logoAndTitle">
+            <img id="iliotLogo" src="/frontend/assets/img/logoiliotcut.png" alt="iliotLogo">
+            <h1>Proposta Comercial iliot</h1>
+
+        </div>
+
+
+        <hr class="solid" id="division1">
+
+        <form action="/" method="post" id="propostaComercial">
+            <div class="gridHeader">
+
+                <div id="razaoNome_grid">
+
+                    <div id="razaoSocial">
+                        <label for="razaoSocial">Razão Social</label>
+                        <input type="text" id="razaoSocial" name="razaoSocial" placeholder="Inserir razão social"
+                            autocomplete="off" required>
+                    </div>
+
+
+                    <div id="nome_grid">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" name="nome" placeholder="Inserir nome" autocomplete="off" required>
+                    </div>
+
+                </div>
+
+                <div id="cnpjDatas_grid">
+                    <div id="cnpj_grid">
+                        <label for="cnpj">CNPJ</label>
+                        <input onclick="cnpjMask()" onfocus="cnpjMask()" type="text" id="cnpj" name="cnpj"
+                            autocomplete="off" placeholder="Insira o CNPJ" required>
+                    </div>
+
+                    <div id="dataProposta_grid">
+                        <label for="dataProposta">Data da Proposta</label>
+                        <input type="text" id="dataProposta" name="dataProposta" readonly="readonly">
+                    </div>
+
+                    <div id="validadeProposta_grid">
+                        <label for="validadeProposta">Validade da Proposta</label>
+
+                        <input type="text" id="validadeProposta" name="validadeProposta" readonly="readonly">
+
+                    </div>
+
+                </div>
+
+                <!-- <div id="dataValidade_grid">
+
+                    
+
+                </div> -->
+            </div>
+        </form>
+
+        <hr class="solid" id="division2">
+
+        <div id="DIVPacoteBasico">
+            <h2>Pacote Basico</h2>
+
+            <div id="DIVSubtitulos">
+                <div id="subtituloFSM">
+                    <p id="subtitulo1_pacoteBasico">FSM: Gestão de Ordens de Serviço</p>
+
+                    <form action="/" method="post" id="pacoteBasico">
+                        <div>
+                            <label for="numeroUsuarios">Numero de Usuários</label>
+                            <input
+                                onchange="DEFINE_precoUnitario(), DEFINE_mensalidadeGeralFIM(), DEFINE_precoUnitarioDesconto(), DEFINE_mensalidadePlanoFSM(), DEFINE_mensalidadeBasica()"
+                                type="text" id="numeroUsuarios" name="numeroUsuarios" placeholder="Inserir valor"
+                                autocomplete="off" required>
+                        </div>
+
+                        <div>
+                            <label for="precoUnitario">Preço Unitário</label>
+                            <input type="text" id="precoUnitario" name="precoUnitario" readonly="readonly">
+                        </div>
+
+                        <div>
+                            <label for="desconto">Desconto</label>
+                            <input
+                                onchange="DEFINE_precoUnitarioDesconto(), DEFINE_mensalidadeGeralFIM(), DEFINE_mensalidadePlanoFSM(), DEFINE_mensalidadeBasica()"
+                                type="text" id="desconto" name="desconto" placeholder="Inserir valor" autocomplete="off"
+                                required>
+                        </div>
+
+                        <div>
+                            <label for="precoUnitarioDesconto">Preço Unit c/ Desconto</label>
+                            <input type="text" id="precoUnitarioDesconto" name="precoUnitarioDesconto"
+                                readonly="readonly">
+                        </div>
+
+                        <div>
+                            <label for="mensalidadePlanoFSM">Mensalidade do Plano</label>
+                            <input type="text" id="mensalidadePlanoFSM" name="mensalidadePlanoFSM" readonly="readonly">
+                        </div>
+
+                    </form>
+                </div>
+                <div id="subtituloPCM">
+                    <p id="subtitulo2_pacoteBasico">PCM: Gestão de Manutenção de Ativos</p>
+
+                    <form action="/" method="post">
+
+
+                        <div>
+                            <label for="numeroAtivos">Número de Ativos</label>
+                            <input
+                                onchange="DEFINE_precoUnitarioAjustado(), DEFINE_mensalidadeGeralFIM(), DEFINE_mensalidadePlanoPCM(),DEFINE_mensalidadeBasica()"
+                                type="text" id="numeroAtivos" name="numeroAtivos" placeholder="Inserir valor"
+                                autocomplete="off" required>
+                        </div>
+
+                        <div>
+                            <label for="valorBase">Valor Base</label>
+                            <input type="text" id="valorBase" name="precoUnitario" value="2.77" readonly="readonly">
+                        </div>
+
+                        <div>
+                            <label for="ajusteVolume">Ajuste por Volume</label>
+                            <input
+                                onchange="DEFINE_precoUnitarioAjustado(), DEFINE_mensalidadeGeralFIM(), DEFINE_mensalidadePlanoPCM(),DEFINE_mensalidadeBasica()"
+                                type="text" id="ajusteVolume" name="ajusteVolume" placeholder="Inserir valor"
+                                autocomplete="off" required>
+                        </div>
+
+                        <div>
+                            <label for="precoUnitarioAjustado">Preço Unit Ajustado</label>
+                            <input type="text" id="precoUnitarioAjustado" name="precoUnitarioAjustado"
+                                readonly="readonly">
+                        </div>
+
+                        <div>
+                            <label for="mensalidadePlanoPCM">Mensalidade do Plano</label>
+                            <input type="text" id="mensalidadePlanoPCM" name="mensalidadePlanoPCM" readonly="readonly">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <form action="/" method="post">
+            <div id="DIVendPacoteBasico">
+
+                <div id="mensalidade_grid">
+                    <label for="mensalidadeBasica">Mensalidade Básica</label>
+                    <input onchange="DEFINE_mensalidadeGeralFIM()" type="text" id="mensalidadeBasica"
+                        name="mensalidadeBasica" readonly="readonly">
+                    <p id="mensalidadeBasicaSubTitulo">Vencimento ao 20º dia de cada mês * Ate </p>
+                </div>
+
+                <div id="taxa_grid">
+                    <label for="taxaAtivacao">Taxa Única de Ativação</label>
+                    <input onchange="DEFINE_taxaAtivacaoFIM()" type="text" id="taxaAtivacao" name="taxaAtivacao"
+                        placeholder="Inserir valor" autocomplete="off" required>
+                    <p id="taxaAtivacaoSubTitulo">Taxa Única, 10 dias após assinatura do contrato</p>
+                </div>
+
+            </div>
+        </form>
+
+        <hr class="solid" id="division3">
+
+        <div id="DIVPacoteOpcional">
+            <h3>Pacote Opicional</h3>
+
+            <form action="/" method="post">
+                <div id="DIV1PacoteOpcional">
+
+                    <div>
+                        <label for="setupWhiteLabel">Setup White Label</label>
+                        <input onclick="STATUScheckBox1(), DEFINE_setupWhiteLabelUnico(), DEFINE_taxaunicaWL_DEV()"
+                            type="checkbox" id="checkBox1">
+                        <input type="text" id="setupWhiteLabel" name="setupWhiteLabel" readonly="readonly">
+                        <p>Cobrança Única</p>
+
+                    </div>
+
+                    <div>
+                        <label for="mensalidadeWhiteLabel">Mensalidade White Label</label>
+                        <input onclick="STATUScheckBox2()" type="checkbox" id="checkBox2">
+                        <input type="text" id="mensalidadeWhiteLabel" name="mensalidadeWhiteLabel" readonly="readonly">
+                        <p>Mensalidade</p>
+                    </div>
+
+                    <div>
+                        <label for="dashboardAvancado">Dashboard Avançado</label>
+                        <input onclick="STATUScheckBox3()" type="checkbox" id="checkBox3">
+                        <input type="text" id="dashboardAvancado" name="dashboardAvancado" readonly="readonly">
+                        <p>Mensalidade</p>
+                    </div>
+
+                    <div>
+                        <label for="sla">SLA</label>
+                        <input onclick="STATUScheckBox4()" type="checkbox" id="checkBox4">
+                        <input type="text" id="sla" name="sla" readonly="readonly">
+                        <p>Mensalidade</p>
+                    </div>
+
+                    <div id="DIVconexaoIot">
+                        <label for="conexaoIot">Conexão IoT</label>
+                        <input onclick="STATUScheckBox5()" type="checkbox" id="checkBox5">
+                        <input type="text" id="conexaoIot" name="conexaoIot" readonly="readonly">
+                        <input type="text" id="qntIot" name="qntIot" placeholder="Inserir quantidade"
+                            autocomplete="off">
+                    </div>
+
+                    <div id="DIVhoraDesenvolvimento">
+                        <label for="horaDesenvolvimento">Hora de Desenvolvimento</label>
+                        <input onclick="STATUScheckBox6(), DEFINE_taxaunicaWL_DEV() " type="checkbox" id="checkBox6">
+                        <input type="text" id="horaDesenvolvimento" name="horaDesenvolvimento" readonly="readonly">
+                        <input onchange="DEFINE_desenvolvimentoUnico(), DEFINE_taxaunicaWL_DEV()" type="text"
+                            id="qntHorasDev" name="qntHorasDev" placeholder="Inserir quantidade" autocomplete="off">
+                    </div>
+
+                </div>
+            </form>
+
+            <form action="/" method="post">
+                <div id="DIV2PacoteOpcional">
+
+                    <div id="mensalidadeOpcional_grid">
+                        <label for="mensalidadeOpcionais">Mensalidade Opcionais</label>
+                        <input onchange="DEFINE_mensalidadeGeralFIM()" type="text" id="mensalidadeOpcionais"
+                            name="mensalidadeOpcionais" readonly="readonly">
+                        <p>Vencimento ao 20º dia de cada mês</p>
+
+                    </div>
+
+                    <div id="whiteLabel_grid">
+                        <label for="setupWhiteLabelUnico">Setup White Label</label>
+                        <input onchange="DEFINE_taxaunicaWL_DEV()" type="text" id="setupWhiteLabelUnico"
+                            name="setupWhiteLabelUnico" readonly="readonly">
+                        <p>Investimento Único</p>
+
+                    </div>
+
+                    <div id="dev_grid">
+                        <label for="desenvolvimentoUnico">Desenvolvimento</label>
+                        <input onchange="DEFINE_taxaunicaWL_DEV()" type="text" id="desenvolvimentoUnico"
+                            name="desenvolvimentoUnico" readonly="readonly">
+                        <p>Investimento Único </p>
+
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+
+        <hr class="solid" id="division4">
+
+        <div id="DIVComment">
+            <h4>Vigência e Cancelamento</h4>
+            <p>Não há delimitação de tempo mínimo e taxas de cancelamento. Cancelamento prévio com 30 dias de
+                antecedência, sem multa, sem taxas adicionais, sem surpresa.</p>
+        </div>
+
+        <br>
+        <br>
+
+        <hr class="solid" id="division1">
+
+        <div id="DIVFinalForms">
+            <h5>Resumo, Observações e Forma de Pagamento</h5>
+
+            <form action="/" method="post">
+                <div id="DIVResumo">
+
+                    <div id="fimTaxa_grid">
+                        <label for="FIM_taxaAtivacao">Taxa de Ativação</label>
+                        <input type="text" id="FIM_taxaAtivacao" name="FIM_taxaAtivacao" readonly="readonly">
+                        <p>10 dias após a assinatura</p>
+                    </div>
+
+                    <div id="fimMensalidade_grid">
+                        <label for="FIM_mensalidadeGeral">Mensalidade Geral</label>
+                        <input type="text" id="FIM_mensalidadeGeral" name="FIM_mensalidadeGeral" readonly="readonly">
+                        <p>Vencimento ao 20º dia de cada mês</p>
+                    </div>
+
+                    <div id="taxaUnica_grid">
+                        <label for="taxaUnicaWL_DEV">TAXA ÚNICA (WL + DEV)</label>
+                        <input type="text" id="taxaUnicaWL_DEV" name="taxaUnicaWL_DEV" readonly="readonly">
+                    </div>
+                </div>
+
+            </form>
+
+
+            <form action="/" method="post">
+                <div id="DIVFinalFields">
+
+                    <div id="separa_grid1">
+                        <div id="vencimento_grid">
+                            <label for="vencimentoTaxaAtivacao">Vencimento Tx de Ativação</label>
+                            <input type="text" id="vencimentoTaxaAtivacao" name="vencimentoTaxaAtivacao"
+                                value="10 dias após a assinatura" readonly="readonly">
+                        </div>
+
+                        <div id="email_grid">
+                            <label for="emailCobraca">E-mail de Cobrança</label>
+                            <input type="email" id="emailCobraca" name="emailCobranca" placeholder="Inserir email"
+                                autocomplete="off" required>
+                        </div>
+
+                        <div id="formaPag_grid">
+                            <label for="formaPagamento">Forma de Pagamento</label>
+                            <input type="text" id="formaPagamento" name="formaPagamento" value="Boleto"
+                                readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div id="separa_grid2">
+                        <div id="obs_grid">
+                            <label for="obsAdicionais">Observações Adicionais</label>
+                            <textarea id="obsAdicionais" name="obsAdicionais"></textarea>
+                            <!-- <input type="textarea" id="obsAdicionais" name="obsAdicionais"> -->
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <hr class="solid" id="division7">
+
+    <div>
+        <div id="DIVEnd">
+            <p id="finalText">LGPD - Ao assinar essa Proposta, você nos autoriza a coletar seus dados para o propósito
+                de Cadastro em nosso Sistema de Gestão. Caso haja dúvidas relativas a como a INOVAR.TECH trata os seus
+                dados, consulte nossa Política de Privacidade no
+                rodape de nosso website: https://iliot.tech.</p>
+
+            <div id="contatoFinal">
+                <p> Contato: <br>Miranda - 073 999 240 432 - lilian.costa@iliot.tech</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<%- include('includes/footer') %>

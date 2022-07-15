@@ -1,0 +1,51 @@
+<%- include('includes/head'); %>
+<%- include('includes/nav'); %>
+
+
+<div class="conteiner my-4">
+    <div class="row">
+        <div class="col-4">
+            <div class="createBtn">
+                <a href="/proposta/index" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary btn-lg">Criar Proposta Comercial</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <% if(tabelas.length > 0) { %>
+            
+                <% tabelas.forEach(tabela => { %>
+            
+                    <div class="tableBtn">
+                        <a href="/tabela/index/<%= tabela._id %>" class="btn btn-dark">
+                            <button type="button" class="btn btn-dark btn-lg">Editar tabela de valores</button>
+                        </a>
+                    </div>
+            
+                <% }); %>
+            
+            <% } %>
+        </div>
+    </div>
+</div>
+
+
+
+
+<% if(propostas.length > 0) { %>
+
+    <% propostas.forEach(proposta => { %>
+
+        <div class="tableBtn my-4">
+            <a href="/proposta/index/<%= proposta._id %>" class="btn btn-primary">
+                <button type="button" class="btn btn-primary btn-lg">Editar proposta de <%=proposta.nome%> </button>
+            </a>
+        </div>
+
+    <% }); %>
+
+<% } %>
+
+
+<%- include('includes/footer'); %>
