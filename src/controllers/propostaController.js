@@ -2,7 +2,8 @@ const Proposta = require('../models/PropostaModel');
 
 exports.index = (req, res) => {
   res.render('proposta', {
-    proposta: {}
+    proposta: {}, 
+    tabela: {},
   });
 };
 

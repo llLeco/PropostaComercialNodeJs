@@ -1,15 +1,34 @@
 const mongoose = require('mongoose');
 
 const TabelaSchema = new mongoose.Schema({
-    validadeDaProposta: { type: String, required: true },
-    precoUnitario: { type: String, required: true },
-    valorBase: { type: String, required: true },
-    setupWhiteLabel: { type: String, required: true },
-    mensalidadeWhiteLabel: { type: String, required: true },
-    dashboardAvancado: { type: String, required: true },
-    sla: { type: String, required: true },
-    conexaoIot: { type: String, required: true },
-    horaDeDesenvolvimento: { type: String, required: true },
+    validadeDaProposta: { type: Number, required: true },
+    valorBase: { type: Number, required: true },
+    setupWhiteLabel: { type: Number, required: true },
+    mensalidadeWhiteLabel: { type: Number, required: true },
+    dashboardAvancado: { type: Number, required: true },
+    sla: { type: Number, required: true },
+    conexaoIot: { type: Number, required: true },
+    horaDeDesenvolvimento: { type: Number, required: true },
+
+    menosque2: { type: Number, required: true },
+    igual3: { type: Number, required: true },
+    igual4: { type: Number, required: true },
+    igual5: { type: Number, required: true },
+    igual6: { type: Number, required: true },
+    igual7: { type: Number, required: true },
+    igual8: { type: Number, required: true },
+    igual9: { type: Number, required: true },
+    entre10e12: { type: Number, required: true },
+    entre13e15: { type: Number, required: true },
+    entre16e21: { type: Number, required: true },
+    entre22e27: { type: Number, required: true },
+    entre28e38: { type: Number, required: true },
+    entre39e49: { type: Number, required: true },
+    entre50e60: { type: Number, required: true },
+    entre61e71: { type: Number, required: true },
+    entre72e82: { type: Number, required: true },
+    entre83e93: { type: Number, required: true },
+    maisque93: { type: Number, required: true },
 });
 
 const TabelaModel = mongoose.model('Tabela', TabelaSchema);

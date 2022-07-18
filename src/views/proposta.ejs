@@ -12,7 +12,7 @@
 
                             <div class="conteiner" style="margin: 20px;">
 
-                                <div class="row">
+                                <div class="row" style="width: 70%; margin: auto;">
 
                                     <div class="col-md-12 text-center">
                                         <h1>Cadastro de Proposta</h1>
@@ -42,8 +42,12 @@
                                                 placeholder="Email de Cobrança" name="email_cobranca">
                                         </div>
 
+                                        <hr>
+
+                                        <h2 style="text-align: center; font-size: 28px;">Pacote básico</h2>
+
                                         <div class="col-6 my-4">
-                                            <p class="">FSM: Gestão de Ordens de Serviço</p>
+                                            <p class="" style="text-align:center; font-weight: bold;">FSM: Gestão de Ordens de Serviço</p>
 
                                             <label for="">Número de usuários</label>
                                             <input value="<%= proposta.numero_usuarios %>" type="text" class="form-control" id=""
@@ -55,7 +59,7 @@
                                         </div>
 
                                         <div class="col-6 my-4">
-                                            <p class="">PCM: Gestão de Manutenção de Ativos </p>
+                                            <p class="" style="text-align:center; font-weight: bold;">PCM: Gestão de Manutenção de Ativos </p>
 
                                             <label for="">Número de ativos</label>
                                             <input value="<%= proposta.numero_ativos %>" type="text" class="form-control" id=""
@@ -65,6 +69,12 @@
                                             <input value="<%= proposta.ajuste_por_volume %>" type="text" class="form-control" id=""
                                                 placeholder="Ajuste por volume" name="ajuste_por_volume">
                                         </div>
+
+                                        <hr>
+
+                                        <div class="col-6"><h2 style="text-align: center; font-size: 28px;">Pacote opcional</h2></div>
+                                        <div class="col-6"><h2 style="text-align: center; font-size: 28px;">Taxa e Observações</h2></div>
+                                        
 
                                         <div class="col-6 my-4"> 
 
@@ -138,14 +148,99 @@
 
                                         </div>
 
-                                        <!-- Modal para vizualizacao previa -->
-                                        
-                                        <button type="submit" class="btn btn-primary my-4">Gerar proposta</button>
-                                        <!-- <button type="submit" class="btn btn-primary my-4">Exportar Proposta</button> -->
+                                        <hr>
+
+                                        <div class="col-12 text-center my-4">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Visualizar Proposta</button>
+    
+                                            <button type="submit" class="btn btn-dark ">Gerar proposta</button>
+    
+                                            <!-- <button type="submit" class="btn btn-primary ">Exportar Proposta</button> -->
+                                        </div>
+
 
                                 </div>
                             </div>
 
                     </form>
 
-                    <%- include('includes/footer') %>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Pré-visualização da proposta comercial</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="container" style="font-size: 12px;">
+                        <div class="row">
+
+                            <div class="col-6 text-center my-2">
+                                <h1 style="font-size: 12px; font-weight: bold;">Gestão de Ordens de Serviço</h1>
+                                <p>valor por usuário: R$00</p>
+                                <p>desconto: 00%</p>
+                                <p>preço unitário com desconto: R$00</p>
+                                <p>mensalidade para X usuários: R$0000</p>
+                            </div>
+
+                            <div class="col-6 text-center my-2">
+                                <h1 style="font-size: 12px; font-weight: bold;">Gestão de Manutenção de Ativos</h1>
+                                <p>valor por ativo: R$00</p>
+                                <p>ajuste por volume: 00%</p>
+                                <p>preço unitário com ajuste: R$00</p>
+                                <p>mensalidade pra X ativos: R$0000</p>
+                            </div>
+                            
+                            <!-- <div class="col-6  my-2">
+                                <p>setup white label: R$9871.17</p>
+                                <p>mensalidade white label: R$455</p>
+                                <p>dashboard avançado: R$397</p>
+                                <p>sla: R$197</p>
+                                <p>hora de desenvolvimento: R$385</p>
+                            </div> -->
+<!--                                             
+                            <div class="col-6  my-2">
+                                <p>setup whitelabel: R$0000</p>
+                                <p>desenvolvimento: R$0000 (00 horas)</p>
+                            </div> -->
+
+                            
+                            <div class="col-6 text-center my-4">
+                                <p style="font-size: 12px;">mensalidade básica: R$0000</p>
+                            <p style="font-size: 12px;">mensalidade opicionais: R$0000</p>
+                            <hr class="solid" style="width: 100%; justify-content: center; margin: auto;">
+                            <p style="font-size: 14px; font-weight: bold;">mensalidade geral: R$0000<%= tabela.%></p>   
+                            </div>
+                            
+                            
+                            
+                            <div class="col-6 text-center my-4">
+                                <p style="font-size: 12px;">taxa única whitelabel: R$0000</p>
+                                <p style="font-size: 12px;">taxa única desenvolvimento: R$0000</p>
+                                <hr class="solid" style="width: 100%; justify-content: center; margin: auto;">
+                                <p style="font-size: 14px; font-weight: bold;">taxa única: R$0000</p>
+                            </div>
+
+                            
+
+                            <div class="col-12 text-center">
+                                <p style="font-size: 14px; font-weight: bold;">taxa única de ativação: R$0000</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                    <button type="button" class="btn btn-primary">Gerar Proposta</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<%- include('includes/footer') %>

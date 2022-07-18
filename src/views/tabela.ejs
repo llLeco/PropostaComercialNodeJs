@@ -3,98 +3,249 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-12">
+    
+    <div class="col-12 text-center">
       <h1 class="text-center">Tabela de Preços</h1>
       <p class="text-center lead">Edite os valores abaixo para o preenchimento automatico das propostas</p>
+    </div>
 
       <%- include('includes/messages') %>
 
       <% if(tabela._id) { %>
-<form action="/tabela/edit/<%= tabela._id %>" method="POST">
-  <% } %>
-  <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+        <form action="/tabela/edit/<%= tabela._id %>" method="POST">
+      <% } %>
+          <input type="hidden" name="_csrf" value=<%= csrfToken %>>
 
-  <table class="table table-bordered table-responsive-md table-striped text-center" style="margin: auto; width: 50%;">
+          <div class="container">
+            <div class="row">
 
-    <thead class="thead-dark">
-      <tr>
-        <th class="text-center">Nome do Campo</th>
-        <th class="text-center">Valor</th>
-      </tr>
-    </thead>
+              <div class="col-6">
+                <table class="table table-bordered table-responsive-md table-striped text-center" style="margin: auto; width: 50%;">
 
-    <tbody>
-      <tr>
-        <td class="pt-3-half" contenteditable="false">Validade da proposta</td>
-        <td class="pt-3-half" contenteditable="false" >
-          <input value="<%= tabela.validadeDaProposta %>" type="text" name="validadeDaProposta" id="1" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
-        </td>
-      </tr>
+                <thead class="thead-dark">
+                  <tr>
+                    <th class="text-center">Nome do Campo</th>
+                    <th class="text-center">Valor</th>
+                  </tr>
+                </thead>
 
-      <tr>
-        <td class="pt-3-half" contenteditable="false">Preço Unitário</td>
-        <td class="pt-3-half" contenteditable="false" >
-          <input value="<%= tabela.precoUnitario %>" type="text" name="precoUnitario" id="2" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
-        </td>
-      </tr>
+                <tbody>
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Validade da proposta</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.validadeDaProposta %>" type="text" name="validadeDaProposta" id="1" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
 
-      <tr>
-        <td class="pt-3-half" contenteditable="false">Valor Base</td>
-        <td class="pt-3-half" contenteditable="false" >
-          <input value="<%= tabela.valorBase %>" type="text" name="valorBase" id="3" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
-        </td>
-      </tr>
-      
-      <tr>
-        <td class="pt-3-half" contenteditable="false">Setup White Label</td>
-        <td class="pt-3-half" contenteditable="false" >
-          <input value="<%= tabela.setupWhiteLabel %>" type="text" name="setupWhiteLabel" id="4" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
-        </td>
-      </tr>
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Valor Base</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.valorBase %>" type="text" name="valorBase" id="3" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Setup White Label</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.setupWhiteLabel %>" type="text" name="setupWhiteLabel" id="4" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
 
-      <tr>
-        <td class="pt-3-half" contenteditable="false">Mensalidade White Label</td>
-        <td class="pt-3-half" contenteditable="false" >
-          <input value="<%= tabela.mensalidadeWhiteLabel %>" type="text" name="mensalidadeWhiteLabel" id="5" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
-        </td>
-      </tr>
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Mensalidade White Label</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.mensalidadeWhiteLabel %>" type="text" name="mensalidadeWhiteLabel" id="5" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
 
-      <tr>
-        <td class="pt-3-half" contenteditable="false">Dashboard Avançado</td>
-        <td class="pt-3-half" contenteditable="false" >
-          <input value="<%= tabela.dashboardAvancado %>" type="text" name="dashboardAvancado" id="6" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
-        </td>
-      </tr>
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Dashboard Avançado</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.dashboardAvancado %>" type="text" name="dashboardAvancado" id="6" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
 
-      <tr>
-        <td class="pt-3-half" contenteditable="false">SLA</td>
-        <td class="pt-3-half" contenteditable="false" >
-          <input value="<%= tabela.sla %>" type="text" name="sla" id="7" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
-        </td>
-      </tr>
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">SLA</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.sla %>" type="text" name="sla" id="7" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
 
-      <tr>
-        <td class="pt-3-half" contenteditable="false">Conexão IoT</td>
-        <td class="pt-3-half" contenteditable="false" >
-          <input value="<%= tabela.conexaoIot %>" type="text" name="conexaoIot" id="8" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
-        </td>
-      </tr>
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Conexão IoT</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.conexaoIot %>" type="text" name="conexaoIot" id="8" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
 
-      <tr>
-        <td class="pt-3-half" contenteditable="false">Hora de Desenvolvimento</td>
-        <td class="pt-3-half" contenteditable="false" >
-          <input value="<%= tabela.horaDeDesenvolvimento %>" type="text" name="horaDeDesenvolvimento" id="9" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
-        </td>
-      </tr>
-    </tbody>
-  </table>
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Hora de Desenvolvimento</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.horaDeDesenvolvimento %>" type="text" name="horaDeDesenvolvimento" id="9" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
 
-  <button type="submit" class="btn btn-primary">Salvar</button>
-  <a href="/"> <button type="button" class="btn btn-primary">Voltar</button> </a>
-  
-</form>
+              
+              <div class="col-6">
+                <table class="table table-bordered table-responsive-md table-striped text-center" style="margin: auto; width: 50%;">
 
-    </div>
+                <thead class="thead-dark">
+                  <tr>
+                    <th class="text-center">Valores de Preço unitário por usuário</th>
+                    <th class="text-center">Valor</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Menos que 2</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.menosque2 %>" type="text" name="menosque2" id="1" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">igual a 3</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.igual3 %>" type="text" name="igual3" id="2" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Igual a 4</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.igual4 %>" type="text" name="igual4" id="3" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Igual a 5</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.igual5 %>" type="text" name="igual5" id="4" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Igual a 6</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.igual6 %>" type="text" name="igual6" id="5" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Igual a 7</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.igual7 %>" type="text" name="igual7" id="6" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Igual a 8</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.igual8 %>" type="text" name="igual8" id="7" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Igual a 9</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.igual9 %>" type="text" name="igual9" id="8" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Entre 10 e 12</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.entre10e12 %>" type="text" name="entre10e12" id="9" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Entre 13 e 15</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.entre13e15 %>" type="text" name="entre13e15" id="1" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Entre 16 e 21</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.entre16e21 %>" type="text" name="entre16e21" id="2" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Entre 22 e 27</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.entre22e27 %>" type="text" name="entre22e27" id="3" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Entre 28 e 38</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.entre28e38 %>" type="text" name="entre28e38" id="4" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Entre 39 e 49</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.entre39e49 %>" type="text" name="entre39e49" id="5" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Entre 50 e 60</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.entre50e60 %>" type="text" name="entre50e60" id="6" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Entre 61 e 71</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.entre61e71 %>" type="text" name="entre61e71" id="7" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Entre 72 e 82</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.entre72e82 %>" type="text" name="entre72e82" id="8" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Entre 83 e 93</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.entre83e93 %>" type="text" name="entre83e93" id="9" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-3-half" contenteditable="false">Mais que 93</td>
+                    <td class="pt-3-half" contenteditable="false" >
+                      <input value="<%= tabela.maisque93 %>" type="text" name="maisque93" id="9" style="background: transparent; border-style: none ;width: 100%; height: 100%;">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+
+            </div>
+          </div>
+          
+
+          <button type="submit" class="btn btn-primary">Salvar</button>
+          <a href="/"> <button type="button" class="btn btn-primary">Voltar</button> </a>
+        
+        </form>
+
   </div>
 </div>
 
