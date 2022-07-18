@@ -1,10 +1,11 @@
 const Proposta = require('../models/PropostaModel');
+const Tabela = require('../models/TabelaModel');
 
-exports.index = (req, res) => {
-  res.render('proposta', {
-    proposta: {}, 
-    tabela: {},
-  });
+exports.index = async (req, res) => {
+
+const tabela = await Tabela.buscaPorId('62d5bd0d02788821a0bc5f4e');
+
+  res.render('proposta', { proposta: {}, tabela });
 };
 
 exports.register = async(req, res) => {

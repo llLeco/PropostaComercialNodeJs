@@ -22,7 +22,7 @@ exports.register = async(req, res) => {
   
       if(tabela.errors.length > 0) {
         req.flash('errors', tabela.errors);
-        req.session.save(() => res.redirect('back'));
+        req.session.save(() => res.redirect('/tabela/index'));
         return;
       }
   
