@@ -15,3 +15,4 @@ document.querySelector('#btnSignup')
     formSignup.style.left = "25px"
     btnColor.style.left = "120px"
 })
+

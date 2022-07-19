@@ -1,351 +1,632 @@
-<%- include('includes/head-proposta') %>
-<%- include('includes/nav') %>
+<!DOCTYPE html>
+<html lang="en">
 
-<section id="fullForm">
-    <div id="formulario">
-        <div id="logoAndTitle">
-            <img id="iliotLogo" src="/frontend/assets/img/logoiliotcut.png" alt="iliotLogo">
-            <h1>Proposta Comercial iliot</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Comercial iliot</title>
 
-        </div>
+    <script src="https://kit.fontawesome.com/91e1592299.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <!-- <script src="/frontend/assets/js/html_pdf.js"></script> -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="/frontend/assets/css/style.css">
+    <link rel="stylesheet" href="/frontend/assets/css/style-template.css">
+
+</head>
+
+<body>
+    <%- include('includes/nav.ejs'); %>
+
+        <div class="container">
+            <div class="row">
+                <div class="proposta col-10 text-center" style="border-style: solid; border-width: 1px; margin: auto; font-size: 12px;">
+
+                    <div id="header">
+
+                        <div id="logoAndTitle">
+                            <img id="iliotLogo" src="/frontend/assets/img/logoiliotcut.png" alt="iliotLogo">
+                            <h1>Proposta Comercial iliot</h1>
+
+                        </div>
 
 
-        <hr class="solid" id="division1">
+                        <hr class="solid" id="division1">
 
-        <form action="/" method="post" id="propostaComercial">
-            <div class="gridHeader">
+                        <div class="gridHeader">
 
-                <div id="razaoNome_grid">
+                            <div id="razaoNome_grid">
 
-                    <div id="razaoSocial">
-                        <label for="razaoSocial">Razão Social</label>
-                        <input type="text" id="razaoSocial" name="razaoSocial" placeholder="Inserir razão social"
-                            autocomplete="off" required>
+                                <div id="razaoSocial">
+                                    <label for="razaoSocial">Razão Social</label>
+                                    <input type="text" id="razaoSocial" name="razaoSocial" autocomplete="off" value="<%=proposta.razao_social%>" required>
+                                </div>
+
+
+                                <div id="nome_grid">
+                                    <label for="nome">Nome</label>
+                                    <input type="text" id="nome" name="nome" autocomplete="off" value="<%=proposta.nome%>" required>
+                                </div>
+
+                            </div>
+
+                            <div id="cnpjDatas_grid">
+                                <div id="cnpj_grid">
+                                    <label for="cnpj">CNPJ</label>
+                                    <input type="text" id="cnpj" name="cnpj" autocomplete="off" value="<%=proposta.cnpj%>" required>
+                                </div>
+
+                                <div id="dataProposta_grid">
+                                    <label for="dataProposta">Data da Proposta</label>
+                                    <input type="text" id="dataProposta" name="dataProposta" readonly="readonly">
+                                </div>
+
+                                <div id="validadeProposta_grid">
+                                    <label for="validadeProposta">Validade da Proposta</label>
+
+                                    <input type="text" id="validadeProposta" name="validadeProposta"
+                                        readonly="readonly">
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
                     </div>
 
 
-                    <div id="nome_grid">
-                        <label for="nome">Nome</label>
-                        <input type="text" id="nome" name="nome" placeholder="Inserir nome" autocomplete="off" required>
+                    <hr class="solid" id="division2">
+
+                    <div id="DIVPacoteBasico">
+                        <h2>Pacote Basico</h2>
+
+                        <div id="DIVSubtitulos">
+                            <div id="subtituloFSM">
+                                <p id="subtitulo1_pacoteBasico">FSM: Gestão de Ordens de Serviço</p>
+
+                                <div>
+                                    <label for="numeroUsuarios">Numero de Usuários</label>
+                                    <input type="text" id="numeroUsuarios" name="numeroUsuarios" autocomplete="off"
+                                        required>
+                                </div>
+
+                                <div>
+                                    <label for="precoUnitario">Preço Unitário</label>
+                                    <input type="text" id="precoUnitario" name="precoUnitario" readonly="readonly">
+                                </div>
+
+                                <div>
+                                    <label for="desconto">Desconto</label>
+                                    <input type="text" id="desconto" name="desconto" autocomplete="off" required>
+                                </div>
+
+                                <div>
+                                    <label for="precoUnitarioDesconto">Preço Unit c/ Desconto</label>
+                                    <input type="text" id="precoUnitarioDesconto" name="precoUnitarioDesconto"
+                                        readonly="readonly">
+                                </div>
+
+                                <div>
+                                    <label for="mensalidadePlanoFSM">Mensalidade do Plano</label>
+                                    <input type="text" id="mensalidadePlanoFSM" name="mensalidadePlanoFSM"
+                                        readonly="readonly">
+                                </div>
+
+
+                            </div>
+                            <div id="subtituloPCM">
+                                <p id="subtitulo2_pacoteBasico">PCM: Gestão de Manutenção de Ativos</p>
+
+
+
+
+                                <div>
+                                    <label for="numeroAtivos">Número de Ativos</label>
+                                    <input type="text" id="numeroAtivos" name="numeroAtivos" autocomplete="off"
+                                        required>
+                                </div>
+
+                                <div>
+                                    <label for="valorBase">Valor Base</label>
+                                    <input type="text" id="valorBase" name="precoUnitario" readonly="readonly">
+                                </div>
+
+                                <div>
+                                    <label for="ajusteVolume">Ajuste por Volume</label>
+                                    <input type="text" id="ajusteVolume" name="ajusteVolume" autocomplete="off"
+                                        required>
+                                </div>
+
+                                <div>
+                                    <label for="precoUnitarioAjustado">Preço Unit Ajustado</label>
+                                    <input type="text" id="precoUnitarioAjustado" name="precoUnitarioAjustado"
+                                        readonly="readonly">
+                                </div>
+
+                                <div>
+                                    <label for="mensalidadePlanoPCM">Mensalidade do Plano</label>
+                                    <input type="text" id="mensalidadePlanoPCM" name="mensalidadePlanoPCM"
+                                        readonly="readonly">
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
 
-                </div>
 
-                <div id="cnpjDatas_grid">
-                    <div id="cnpj_grid">
-                        <label for="cnpj">CNPJ</label>
-                        <input onclick="cnpjMask()" onfocus="cnpjMask()" type="text" id="cnpj" name="cnpj"
-                            autocomplete="off" placeholder="Insira o CNPJ" required>
-                    </div>
 
-                    <div id="dataProposta_grid">
-                        <label for="dataProposta">Data da Proposta</label>
-                        <input type="text" id="dataProposta" name="dataProposta" readonly="readonly">
-                    </div>
+                    <div id="DIVendPacoteBasico">
 
-                    <div id="validadeProposta_grid">
-                        <label for="validadeProposta">Validade da Proposta</label>
+                        <div id="mensalidade_grid">
+                            <label for="mensalidadeBasica">Mensalidade Básica</label>
+                            <input type="text" id="mensalidadeBasica" name="mensalidadeBasica" readonly="readonly">
+                            <p id="mensalidadeBasicaSubTitulo">Vencimento ao 20º dia de cada mês * Ate </p>
+                        </div>
 
-                        <input type="text" id="validadeProposta" name="validadeProposta" readonly="readonly">
+                        <div id="taxa_grid">
+                            <label for="taxaAtivacao">Taxa Única de Ativação</label>
+                            <input type="text" id="taxaAtivacao" name="taxaAtivacao" autocomplete="off" required>
+                            <p id="taxaAtivacaoSubTitulo">Taxa Única, 10 dias após assinatura do contrato</p>
+                        </div>
 
                     </div>
 
-                </div>
 
-                <!-- <div id="dataValidade_grid">
+                    <hr class="solid" id="division3">
 
-                    
+                    <div id="DIVPacoteOpcional">
+                        <h3>Pacote Opicional</h3>
 
-                </div> -->
-            </div>
-        </form>
 
-        <hr class="solid" id="division2">
+                        <div id="DIV1PacoteOpcional">
 
-        <div id="DIVPacoteBasico">
-            <h2>Pacote Basico</h2>
+                            <div>
+                                <label for="setupWhiteLabel">Setup White Label</label>
+                                <input type="checkbox"
+                                    id="checkBox1">
+                                <input type="text" id="setupWhiteLabel" name="setupWhiteLabel" readonly="readonly">
+                                <p>Cobrança Única</p>
 
-            <div id="DIVSubtitulos">
-                <div id="subtituloFSM">
-                    <p id="subtitulo1_pacoteBasico">FSM: Gestão de Ordens de Serviço</p>
+                            </div>
 
-                    <form action="/" method="post" id="pacoteBasico">
-                        <div>
-                            <label for="numeroUsuarios">Numero de Usuários</label>
-                            <input
-                                onchange="DEFINE_precoUnitario(), DEFINE_mensalidadeGeralFIM(), DEFINE_precoUnitarioDesconto(), DEFINE_mensalidadePlanoFSM(), DEFINE_mensalidadeBasica()"
-                                type="text" id="numeroUsuarios" name="numeroUsuarios" placeholder="Inserir valor"
-                                autocomplete="off" required>
+                            <div>
+                                <label for="mensalidadeWhiteLabel">Mensalidade White Label</label>
+                                <input type="checkbox" id="checkBox2">
+                                <input type="text" id="mensalidadeWhiteLabel" name="mensalidadeWhiteLabel"
+                                    readonly="readonly">
+                                <p>Mensalidade</p>
+                            </div>
+
+                            <div>
+                                <label for="dashboardAvancado">Dashboard Avançado</label>
+                                <input type="checkbox" id="checkBox3">
+                                <input type="text" id="dashboardAvancado" name="dashboardAvancado" readonly="readonly">
+                                <p>Mensalidade</p>
+                            </div>
+
+                            <div>
+                                <label for="sla">SLA</label>
+                                <input type="checkbox" id="checkBox4">
+                                <input type="text" id="sla" name="sla" readonly="readonly">
+                                <p>Mensalidade</p>
+                            </div>
+
+                            <div id="DIVhoraDesenvolvimento">
+                                <label for="horaDesenvolvimento">Hora de Desenvolvimento</label>
+                                <input type="checkbox" id="checkBox6">
+                                <input type="text" id="horaDesenvolvimento" name="horaDesenvolvimento"
+                                    readonly="readonly">
+                                <input type="text" id="qntHorasDev" name="qntHorasDev"
+                                    autocomplete="off">
+                            </div>
+
                         </div>
 
-                        <div>
-                            <label for="precoUnitario">Preço Unitário</label>
-                            <input type="text" id="precoUnitario" name="precoUnitario" readonly="readonly">
+
+
+                        <div id="DIV2PacoteOpcional">
+
+                            <div id="mensalidadeOpcional_grid">
+                                <label for="mensalidadeOpcionais">Mensalidade Opcionais</label>
+                                <input type="text" id="mensalidadeOpcionais" name="mensalidadeOpcionais"
+                                    readonly="readonly">
+                                <p>Vencimento ao 20º dia de cada mês</p>
+
+                            </div>
+
+                            <div id="whiteLabel_grid">
+                                <label for="setupWhiteLabelUnico">Setup White Label</label>
+                                <input type="text" id="setupWhiteLabelUnico" name="setupWhiteLabelUnico"
+                                    readonly="readonly">
+                                <p>Investimento Único</p>
+
+                            </div>
+
+                            <div id="dev_grid">
+                                <label for="desenvolvimentoUnico">Desenvolvimento</label>
+                                <input type="text" id="desenvolvimentoUnico" name="desenvolvimentoUnico"
+                                    readonly="readonly">
+                                <p>Investimento Único </p>
+
+                            </div>
+
                         </div>
 
-                        <div>
-                            <label for="desconto">Desconto</label>
-                            <input
-                                onchange="DEFINE_precoUnitarioDesconto(), DEFINE_mensalidadeGeralFIM(), DEFINE_mensalidadePlanoFSM(), DEFINE_mensalidadeBasica()"
-                                type="text" id="desconto" name="desconto" placeholder="Inserir valor" autocomplete="off"
-                                required>
+
+                    </div>
+
+                    <hr class="solid" id="division4">
+
+                    <div id="DIVComment">
+                        <h4>Vigência e Cancelamento</h4>
+                        <p>Não há delimitação de tempo mínimo e taxas de cancelamento. Cancelamento prévio com 30 dias
+                            de
+                            antecedência, sem multa, sem taxas adicionais, sem surpresa.</p>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <hr class="solid" id="division1">
+
+                    <div id="DIVFinalForms">
+                        <h5>Resumo, Observações e Forma de Pagamento</h5>
+
+
+                        <div id="DIVResumo">
+
+                            <div id="fimTaxa_grid">
+                                <label for="FIM_taxaAtivacao">Taxa de Ativação</label>
+                                <input type="text" id="FIM_taxaAtivacao" name="FIM_taxaAtivacao" readonly="readonly">
+                                <p>10 dias após a assinatura</p>
+                            </div>
+
+                            <div id="fimMensalidade_grid">
+                                <label for="FIM_mensalidadeGeral">Mensalidade Geral</label>
+                                <input type="text" id="FIM_mensalidadeGeral" name="FIM_mensalidadeGeral"
+                                    readonly="readonly">
+                                <p>Vencimento ao 20º dia de cada mês</p>
+                            </div>
+
+                            <div id="taxaUnica_grid">
+                                <label for="taxaUnicaWL_DEV">TAXA ÚNICA (WL + DEV)</label>
+                                <input type="text" id="taxaUnicaWL_DEV" name="taxaUnicaWL_DEV" readonly="readonly">
+                            </div>
                         </div>
 
-                        <div>
-                            <label for="precoUnitarioDesconto">Preço Unit c/ Desconto</label>
-                            <input type="text" id="precoUnitarioDesconto" name="precoUnitarioDesconto"
-                                readonly="readonly">
+
+
+
+
+                        <div id="DIVFinalFields">
+
+                            <div id="separa_grid1">
+                                <div id="vencimento_grid">
+                                    <label for="vencimentoTaxaAtivacao">Vencimento Tx de Ativação</label>
+                                    <input type="text" id="vencimentoTaxaAtivacao" name="vencimentoTaxaAtivacao"
+                                        value="10 dias após a assinatura" readonly="readonly">
+                                </div>
+
+                                <div id="email_grid">
+                                    <label for="emailCobraca">E-mail de Cobrança</label>
+                                    <input type="text" id="emailCobraca" name="emailCobranca" autocomplete="off" value="<%=proposta.email_cobranca%>" required>
+                                </div>
+
+                                <div id="formaPag_grid">
+                                    <label for="formaPagamento">Forma de Pagamento</label>
+                                    <input type="text" id="formaPagamento" name="formaPagamento" value="Boleto"
+                                        readonly="readonly">
+                                </div>
+                            </div>
+
+                            <div id="separa_grid2">
+                                <div id="obs_grid">
+                                    <label for="obsAdicionais">Observações Adicionais</label>
+                                    <textarea id="obsAdicionais" name="obsAdicionais"><%=proposta.observacoes%></textarea>
+                                </div>
+                            </div>
                         </div>
 
-                        <div>
-                            <label for="mensalidadePlanoFSM">Mensalidade do Plano</label>
-                            <input type="text" id="mensalidadePlanoFSM" name="mensalidadePlanoFSM" readonly="readonly">
-                        </div>
-
-                    </form>
-                </div>
-                <div id="subtituloPCM">
-                    <p id="subtitulo2_pacoteBasico">PCM: Gestão de Manutenção de Ativos</p>
-
-                    <form action="/" method="post">
+                    </div>
 
 
-                        <div>
-                            <label for="numeroAtivos">Número de Ativos</label>
-                            <input
-                                onchange="DEFINE_precoUnitarioAjustado(), DEFINE_mensalidadeGeralFIM(), DEFINE_mensalidadePlanoPCM(),DEFINE_mensalidadeBasica()"
-                                type="text" id="numeroAtivos" name="numeroAtivos" placeholder="Inserir valor"
-                                autocomplete="off" required>
-                        </div>
-
-                        <div>
-                            <label for="valorBase">Valor Base</label>
-                            <input type="text" id="valorBase" name="precoUnitario" value="2.77" readonly="readonly">
-                        </div>
-
-                        <div>
-                            <label for="ajusteVolume">Ajuste por Volume</label>
-                            <input
-                                onchange="DEFINE_precoUnitarioAjustado(), DEFINE_mensalidadeGeralFIM(), DEFINE_mensalidadePlanoPCM(),DEFINE_mensalidadeBasica()"
-                                type="text" id="ajusteVolume" name="ajusteVolume" placeholder="Inserir valor"
-                                autocomplete="off" required>
-                        </div>
-
-                        <div>
-                            <label for="precoUnitarioAjustado">Preço Unit Ajustado</label>
-                            <input type="text" id="precoUnitarioAjustado" name="precoUnitarioAjustado"
-                                readonly="readonly">
-                        </div>
-
-                        <div>
-                            <label for="mensalidadePlanoPCM">Mensalidade do Plano</label>
-                            <input type="text" id="mensalidadePlanoPCM" name="mensalidadePlanoPCM" readonly="readonly">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
-        <form action="/" method="post">
-            <div id="DIVendPacoteBasico">
-
-                <div id="mensalidade_grid">
-                    <label for="mensalidadeBasica">Mensalidade Básica</label>
-                    <input onchange="DEFINE_mensalidadeGeralFIM()" type="text" id="mensalidadeBasica"
-                        name="mensalidadeBasica" readonly="readonly">
-                    <p id="mensalidadeBasicaSubTitulo">Vencimento ao 20º dia de cada mês * Ate </p>
-                </div>
-
-                <div id="taxa_grid">
-                    <label for="taxaAtivacao">Taxa Única de Ativação</label>
-                    <input onchange="DEFINE_taxaAtivacaoFIM()" type="text" id="taxaAtivacao" name="taxaAtivacao"
-                        placeholder="Inserir valor" autocomplete="off" required>
-                    <p id="taxaAtivacaoSubTitulo">Taxa Única, 10 dias após assinatura do contrato</p>
-                </div>
-
-            </div>
-        </form>
-
-        <hr class="solid" id="division3">
-
-        <div id="DIVPacoteOpcional">
-            <h3>Pacote Opicional</h3>
-
-            <form action="/" method="post">
-                <div id="DIV1PacoteOpcional">
+                    <hr class="solid" id="division7">
 
                     <div>
-                        <label for="setupWhiteLabel">Setup White Label</label>
-                        <input onclick="STATUScheckBox1(), DEFINE_setupWhiteLabelUnico(), DEFINE_taxaunicaWL_DEV()"
-                            type="checkbox" id="checkBox1">
-                        <input type="text" id="setupWhiteLabel" name="setupWhiteLabel" readonly="readonly">
-                        <p>Cobrança Única</p>
+                        <div id="DIVEnd">
+                            <p id="finalText">LGPD - Ao assinar essa Proposta, você nos autoriza a coletar seus dados
+                                para o
+                                propósito
+                                de Cadastro em nosso Sistema de Gestão. Caso haja dúvidas relativas a como a INOVAR.TECH
+                                trata os
+                                seus
+                                dados, consulte nossa Política de Privacidade no
+                                rodape de nosso website: https://iliot.tech.</p>
 
-                    </div>
-
-                    <div>
-                        <label for="mensalidadeWhiteLabel">Mensalidade White Label</label>
-                        <input onclick="STATUScheckBox2()" type="checkbox" id="checkBox2">
-                        <input type="text" id="mensalidadeWhiteLabel" name="mensalidadeWhiteLabel" readonly="readonly">
-                        <p>Mensalidade</p>
-                    </div>
-
-                    <div>
-                        <label for="dashboardAvancado">Dashboard Avançado</label>
-                        <input onclick="STATUScheckBox3()" type="checkbox" id="checkBox3">
-                        <input type="text" id="dashboardAvancado" name="dashboardAvancado" readonly="readonly">
-                        <p>Mensalidade</p>
-                    </div>
-
-                    <div>
-                        <label for="sla">SLA</label>
-                        <input onclick="STATUScheckBox4()" type="checkbox" id="checkBox4">
-                        <input type="text" id="sla" name="sla" readonly="readonly">
-                        <p>Mensalidade</p>
-                    </div>
-
-                    <div id="DIVconexaoIot">
-                        <label for="conexaoIot">Conexão IoT</label>
-                        <input onclick="STATUScheckBox5()" type="checkbox" id="checkBox5">
-                        <input type="text" id="conexaoIot" name="conexaoIot" readonly="readonly">
-                        <input type="text" id="qntIot" name="qntIot" placeholder="Inserir quantidade"
-                            autocomplete="off">
-                    </div>
-
-                    <div id="DIVhoraDesenvolvimento">
-                        <label for="horaDesenvolvimento">Hora de Desenvolvimento</label>
-                        <input onclick="STATUScheckBox6(), DEFINE_taxaunicaWL_DEV() " type="checkbox" id="checkBox6">
-                        <input type="text" id="horaDesenvolvimento" name="horaDesenvolvimento" readonly="readonly">
-                        <input onchange="DEFINE_desenvolvimentoUnico(), DEFINE_taxaunicaWL_DEV()" type="text"
-                            id="qntHorasDev" name="qntHorasDev" placeholder="Inserir quantidade" autocomplete="off">
-                    </div>
-
-                </div>
-            </form>
-
-            <form action="/" method="post">
-                <div id="DIV2PacoteOpcional">
-
-                    <div id="mensalidadeOpcional_grid">
-                        <label for="mensalidadeOpcionais">Mensalidade Opcionais</label>
-                        <input onchange="DEFINE_mensalidadeGeralFIM()" type="text" id="mensalidadeOpcionais"
-                            name="mensalidadeOpcionais" readonly="readonly">
-                        <p>Vencimento ao 20º dia de cada mês</p>
-
-                    </div>
-
-                    <div id="whiteLabel_grid">
-                        <label for="setupWhiteLabelUnico">Setup White Label</label>
-                        <input onchange="DEFINE_taxaunicaWL_DEV()" type="text" id="setupWhiteLabelUnico"
-                            name="setupWhiteLabelUnico" readonly="readonly">
-                        <p>Investimento Único</p>
-
-                    </div>
-
-                    <div id="dev_grid">
-                        <label for="desenvolvimentoUnico">Desenvolvimento</label>
-                        <input onchange="DEFINE_taxaunicaWL_DEV()" type="text" id="desenvolvimentoUnico"
-                            name="desenvolvimentoUnico" readonly="readonly">
-                        <p>Investimento Único </p>
-
-                    </div>
-
-                </div>
-            </form>
-
-        </div>
-
-        <hr class="solid" id="division4">
-
-        <div id="DIVComment">
-            <h4>Vigência e Cancelamento</h4>
-            <p>Não há delimitação de tempo mínimo e taxas de cancelamento. Cancelamento prévio com 30 dias de
-                antecedência, sem multa, sem taxas adicionais, sem surpresa.</p>
-        </div>
-
-        <br>
-        <br>
-
-        <hr class="solid" id="division1">
-
-        <div id="DIVFinalForms">
-            <h5>Resumo, Observações e Forma de Pagamento</h5>
-
-            <form action="/" method="post">
-                <div id="DIVResumo">
-
-                    <div id="fimTaxa_grid">
-                        <label for="FIM_taxaAtivacao">Taxa de Ativação</label>
-                        <input type="text" id="FIM_taxaAtivacao" name="FIM_taxaAtivacao" readonly="readonly">
-                        <p>10 dias após a assinatura</p>
-                    </div>
-
-                    <div id="fimMensalidade_grid">
-                        <label for="FIM_mensalidadeGeral">Mensalidade Geral</label>
-                        <input type="text" id="FIM_mensalidadeGeral" name="FIM_mensalidadeGeral" readonly="readonly">
-                        <p>Vencimento ao 20º dia de cada mês</p>
-                    </div>
-
-                    <div id="taxaUnica_grid">
-                        <label for="taxaUnicaWL_DEV">TAXA ÚNICA (WL + DEV)</label>
-                        <input type="text" id="taxaUnicaWL_DEV" name="taxaUnicaWL_DEV" readonly="readonly">
-                    </div>
-                </div>
-
-            </form>
-
-
-            <form action="/" method="post">
-                <div id="DIVFinalFields">
-
-                    <div id="separa_grid1">
-                        <div id="vencimento_grid">
-                            <label for="vencimentoTaxaAtivacao">Vencimento Tx de Ativação</label>
-                            <input type="text" id="vencimentoTaxaAtivacao" name="vencimentoTaxaAtivacao"
-                                value="10 dias após a assinatura" readonly="readonly">
-                        </div>
-
-                        <div id="email_grid">
-                            <label for="emailCobraca">E-mail de Cobrança</label>
-                            <input type="email" id="emailCobraca" name="emailCobranca" placeholder="Inserir email"
-                                autocomplete="off" required>
-                        </div>
-
-                        <div id="formaPag_grid">
-                            <label for="formaPagamento">Forma de Pagamento</label>
-                            <input type="text" id="formaPagamento" name="formaPagamento" value="Boleto"
-                                readonly="readonly">
+                            <div id="contatoFinal">
+                                <p> Contato: <br>Miranda - 073 999 240 432 - lilian.costa@iliot.tech</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div id="separa_grid2">
-                        <div id="obs_grid">
-                            <label for="obsAdicionais">Observações Adicionais</label>
-                            <textarea id="obsAdicionais" name="obsAdicionais"></textarea>
-                            <!-- <input type="textarea" id="obsAdicionais" name="obsAdicionais"> -->
-                        </div>
-                    </div>
                 </div>
-            </form>
-        </div>
-    </div>
 
-    <hr class="solid" id="division7">
-
-    <div>
-        <div id="DIVEnd">
-            <p id="finalText">LGPD - Ao assinar essa Proposta, você nos autoriza a coletar seus dados para o propósito
-                de Cadastro em nosso Sistema de Gestão. Caso haja dúvidas relativas a como a INOVAR.TECH trata os seus
-                dados, consulte nossa Política de Privacidade no
-                rodape de nosso website: https://iliot.tech.</p>
-
-            <div id="contatoFinal">
-                <p> Contato: <br>Miranda - 073 999 240 432 - lilian.costa@iliot.tech</p>
             </div>
         </div>
-    </div>
 
-</section>
 
-<%- include('includes/footer') %>
+        <script type="text/javascript">
+            // HEADER
+            let js_razaoSocial = document.getElementById('razaoSocial');
+            let js_cnpj = document.getElementById('cnpj');
+            let js_nome = document.getElementById('nome');
+            let js_dataProposta = document.getElementById('dataProposta');
+            let js_validadeProposta = document.getElementById('validadeProposta');
+            // PACOTE BASICO
+            let js_numeroUsuarios = document.getElementById('numeroUsuarios');
+            let js_precoUnitario = document.getElementById('precoUnitario');
+            let js_desconto = document.getElementById('desconto');
+            let js_precoUnitarioDesconto = document.getElementById('precoUnitarioDesconto');
+            let js_mensalidadePlanoFSM = document.getElementById('mensalidadePlanoFSM');
+            let js_numeroAtivos = document.getElementById('numeroAtivos');
+            let js_valorBase = document.getElementById('valorBase');
+            let js_ajusteVolume = document.getElementById('ajusteVolume');
+            let js_precoUnitarioAjustado = document.getElementById('precoUnitarioAjustado');
+            let js_mensalidadePlanoPCM = document.getElementById('mensalidadePlanoPCM');
+            // MIDDLE DIV
+            let js_mensalidadeBasica = document.getElementById('mensalidadeBasica');
+            let js_taxaAtivacao = document.getElementById('taxaAtivacao');
+            // PACOTE OPCIONAL
+            let js_setupWhiteLabel = document.getElementById('setupWhiteLabel');
+            let js_checkBox1 = document.getElementById('checkBox1');
+            let js_mensalidadeWhiteLabel = document.getElementById('mensalidadeWhiteLabel');
+            let js_checkBox2 = document.getElementById('checkBox2');
+            let js_dashboardAvancado = document.getElementById('dashboardAvancado');
+            let js_checkBox3 = document.getElementById('checkBox3');
+            let js_sla = document.getElementById('sla');
+            let js_checkBox4 = document.getElementById('checkBox4');
+            let js_DIVconexaoIot = document.getElementById('DIVconexaoIot');
+            let js_conexaoIot = document.getElementById('conexaoIot');
+            let js_qntIot = document.getElementById('qntIot');
+            let js_checkBox5 = document.getElementById('checkBox5');
+            let js_DIVhoraDesenvolvimento = document.getElementById('DIVhoraDesenvolvimento');
+            let js_horaDesenvolvimento = document.getElementById('horaDesenvolvimento');
+            let js_qntHorasDev = document.getElementById('qntHorasDev');
+            let js_checkBox6 = document.getElementById('checkBox6');
+            let js_mensalidadeOpcionais = document.getElementById('mensalidadeOpcionais');
+            let js_setupWhiteLabelUnico = document.getElementById('setupWhiteLabelUnico');
+            let js_desenvolvimentoUnico = document.getElementById('desenvolvimentoUnico');
+            // RESUMO E OBS
+            let js_FIM_taxaAtivacao = document.getElementById('FIM_taxaAtivacao');
+            let js_FIM_mensalidadeGeral = document.getElementById('FIM_mensalidadeGeral');
+            let js_taxaUnicaWL_DEV = document.getElementById('taxaUnicaWL_DEV');
+            let js_vencimentoTaxaAtivacao = document.getElementById('vencimentoTaxaAtivacao');
+            let js_formaPagamento = document.getElementById('formaPagamento');
+            let js_emailCobranca = document.getElementById('emailCobranca');
+            let js_obsAdicionais = document.getElementById('obsAdicionais');
+            // FIM DECLARAÇÃO DE VARIAVEIS
+            dataProposta.value = criaData(0, 0, 0);
+            validadeProposta.value = criaData(0, 1, 0);
+            let valorBase, fms1Price, pricefix, mensalidade = 0;
+            
+
+            // INICIO FUNÇÕES
+
+            function criaData(dia, mes, ano) {
+                var dateObj = new Date();
+                var day = dateObj.getUTCDate() + dia;
+                var month = dateObj.getUTCMonth() + 1 + mes; //months from 1-12
+                var year = dateObj.getUTCFullYear() + ano;
+                const newdate = day + "/" + month + "/" + year;
+                return newdate;
+            }
+            function cnpjMask() {
+                cnpj.addEventListener('keyup', function (e) {
+                    var cnpjAux = cnpj.value.replace(/\D/g, '');
+                    var a = [];
+                    a[0] = cnpjAux.substr(0, 2);
+                    a[1] = cnpjAux.substr(2, 3);
+                    a[2] = cnpjAux.substr(5, 3);
+                    a[3] = cnpjAux.substr(8, 4);
+                    a[4] = cnpjAux.substr(12, 2);
+                    cnpj.value = `${a[0]}.${a[1]}.${a[2]}.${a[3]}/${a[4]}`;
+                }
+                    , false);
+            }
+
+            function DEFINE_numeroUsuarios() {
+                js_numeroUsuarios.value = parseFloat("<%=proposta.numero_usuarios%>");
+            }
+
+            function DEFINE_precoUnitario() {
+                let p_numUser = parseFloat("<%=proposta.numero_usuarios%>");
+                if (p_numUser <= 2) { fms1Price =  parseFloat("<%=tabela.menosque2%>");js_precoUnitario.value = fms1Price;
+                } else if (p_numUser == 3) {fms1Price =  parseFloat("<%=tabela.igual3%>"); js_precoUnitario.value =fms1Price;
+                } else if (p_numUser == 4) {fms1Price =  parseFloat("<%=tabela.igual4%>"); js_precoUnitario.value = fms1Price;
+                } else if (p_numUser == 5) {fms1Price =  parseFloat("<%=tabela.igual5%>"); js_precoUnitario.value = fms1Price;
+                } else if (p_numUser == 6) {fms1Price =  parseFloat("<%=tabela.igual6%>"); js_precoUnitario.value = fms1Price;
+                } else if (p_numUser == 7) {fms1Price =  parseFloat("<%=tabela.igual7%>"); js_precoUnitario.value = fms1Price;
+                } else if (p_numUser == 8) {fms1Price =  parseFloat("<%=tabela.igual8%>"); js_precoUnitario.value = fms1Price;
+                } else if (p_numUser == 9) {fms1Price =  parseFloat("<%=tabela.igual9%>"); js_precoUnitario.value = fms1Price;
+                } else if (p_numUser >= 10 && p_numUser <= 12) {fms1Price =  parseFloat("<%=tabela.entre10e12%>"); js_precoUnitario.value = fms1Price;
+                } else if (p_numUser >= 13 && p_numUser <= 15) {fms1Price =  parseFloat("<%=tabela.entre13e15%>"); js_precoUnitario.value = fms1Price;
+                } else if (p_numUser >= 16 && p_numUser <= 21) {fms1Price =  parseFloat("<%=tabela.entre16e21%>"); js_precoUnitario.value = fms1Price;
+                } else if (p_numUser >= 22 && p_numUser <= 27) {fms1Price =  parseFloat("<%=tabela.entre22e27%>"); js_precoUnitario.value = fms1Price;
+                } else if (p_numUser >= 28 && p_numUser <= 38) {fms1Price =  parseFloat("<%=tabela.entre28e38%>"); js_precoUnitario.value = fms1Price;
+                } else if (p_numUser >= 39 && p_numUser <= 49) {fms1Price =  parseFloat("<%=tabela.entre39e49%>"); js_precoUnitario.value = fms1Price;
+                } else if (p_numUser >= 50 && p_numUser <= 60) {fms1Price =  parseFloat("<%=tabela.entre50e60%>"); js_precoUnitario.value = fms1Price;
+                } else if (p_numUser >= 61 && p_numUser <= 71) {fms1Price =  parseFloat("<%=tabela.entre61e71%>");js_precoUnitario.value = fms1Price;
+                } else if (p_numUser >= 72 && p_numUser <= 82) {fms1Price =  parseFloat("<%=tabela.entre72e82%>");js_precoUnitario.value = fms1Price;
+                } else if (p_numUser >= 83 && p_numUser <= 93) {fms1Price =  parseFloat("<%=tabela.entre83e93%>"); js_precoUnitario.value = fms1Price;
+                } else if (p_numUser > 93) {fms1Price =  parseFloat("<%=tabela.maisque93%>"); js_precoUnitario.value = fms1Price;
+                } else {js_precoUnitario.value = prefix1;}
+            }
+
+            function DEFINE_desconto() {
+                js_desconto.value = parseFloat("<%=proposta.desconto%>");
+            }
+
+            function DEFINE_precoUnitarioDesconto() {
+                pricefix = (1 - js_desconto.value/100)* fms1Price;
+                js_precoUnitarioDesconto.value = pricefix.toFixed(2);
+            }
+
+            function DEFINE_mensalidadePlanoFSM() {
+                mensalidade = pricefix * parseFloat("<%=proposta.numero_usuarios%>");
+                js_mensalidadePlanoFSM.value =  mensalidade.toFixed(2);
+            }
+            
+            function DEFINE_numeroAtivos() {
+                js_numeroAtivos.value = parseFloat("<%=proposta.numero_ativos%>");
+            }
+            
+            function DEFINE_valorBase() {
+                valorBase = parseFloat("<%=tabela.valorBase%>");
+                js_valorBase.value = valorBase.toFixed(2);
+            }
+            
+            function DEFINE_ajusteVolume() {
+                ajusteVolume = parseFloat("<%=proposta.ajuste_por_volume%>");
+                js_ajusteVolume.value = ajusteVolume
+            }
+
+            function DEFINE_precoUnitarioAjustado() {
+            
+            }
+
+            function DEFINE_mensalidadePlanoPCM() {
+
+            }
+
+            function DEFINE_mensalidadeBasica() {
+
+            }
+
+            function STATUScheckBox1() {
+
+            }
+
+            function STATUScheckBox2() {
+
+            }
+
+            function STATUScheckBox3() {
+
+            }
+
+            function STATUScheckBox4() {
+
+            }
+
+            function STATUScheckBox5() {
+
+            }
+
+            function STATUScheckBox6() {
+
+            }
+
+            function DEFINE_mensalidadeOpcionais() {
+
+
+            }
+
+            function DEFINE_setupWhiteLabelUnico() {
+
+            }
+
+            function DEFINE_desenvolvimentoUnico() {
+
+            }
+
+            function DEFINE_taxaAtivacaoFIM() {
+
+            }
+
+            function DEFINE_mensalidadeGeralFIM() {
+
+            }
+
+            function DEFINE_taxaunicaWL_DEV() {
+
+            }
+
+
+            function DEFINE_taxaAtivacaoUnica() {}
+
+            function DEFINE_setupWhiteLabel() {}
+
+            function DEFINE_mensalidadeWhiteLabel() {}
+
+            function DEFINE_dashboardAvancado() {}
+
+            function DEFINE_sla() {}
+
+            function DEFINE_conexaoIot() {}
+
+            function DEFINE_qntIot() {}
+
+            function DEFINE_horaDesenvolvimento() {}
+
+            function DEFINE_qntHorasDev() {}
+
+            function DEFINE_vencimentoTaxaAtivacao() {}
+
+            function DEFINE_emailCobranca() {}
+
+            function DEFINE_formaPagamento() {}
+
+            // FIM FUNÇÕES
+
+
+            window.onload = function() {
+
+                DEFINE_numeroUsuarios();
+                DEFINE_precoUnitario();
+                DEFINE_desconto();
+                DEFINE_precoUnitarioDesconto();
+                DEFINE_mensalidadePlanoFSM();
+
+                DEFINE_numeroAtivos();
+                DEFINE_valorBase();
+                DEFINE_ajusteVolume();
+                DEFINE_precoUnitarioAjustado();
+                DEFINE_mensalidadePlanoPCM();
+
+                DEFINE_mensalidadeBasica();
+                DEFINE_taxaAtivacaoUnica();
+
+                STATUScheckBox1();
+                STATUScheckBox2();
+                STATUScheckBox3();
+                STATUScheckBox4();
+                STATUScheckBox5();
+                STATUScheckBox6();
+                DEFINE_mensalidadeOpcionais();
+                DEFINE_setupWhiteLabelUnico();
+                DEFINE_desenvolvimentoUnico();
+                DEFINE_taxaAtivacaoFIM();
+                DEFINE_mensalidadeGeralFIM();
+                DEFINE_taxaunicaWL_DEV();
+                DEFINE_setupWhiteLabel();
+                DEFINE_mensalidadeWhiteLabel();
+                DEFINE_dashboardAvancado();
+                DEFINE_sla();
+                DEFINE_conexaoIot();
+                DEFINE_qntIot();
+                DEFINE_horaDesenvolvimento();
+                DEFINE_qntHorasDev();
+                DEFINE_vencimentoTaxaAtivacao();
+                DEFINE_emailCobranca();
+                DEFINE_formaPagamento();
+
+            }
+
+        </script>
+</body>
+
+</html>

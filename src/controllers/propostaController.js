@@ -20,7 +20,7 @@ exports.register = async(req, res) => {
     }
 
     req.flash('success', 'Proposta registrada com sucesso.');
-    req.session.save(() => res.redirect(`/proposta/index/${proposta.proposta._id}`));
+    req.session.save(() => res.redirect(`/template/pdf/${proposta.proposta._id}`));
     return;
   } catch(e) {
     console.log(e);

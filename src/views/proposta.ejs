@@ -61,11 +61,11 @@
                                             <p class="" style="text-align:center; font-weight: bold;">PCM: Gestão de Manutenção de Ativos </p>
 
                                             <label for="">Número de ativos</label>
-                                            <input value="<%= proposta.numero_ativos %>" type="text" class="form-control" id=""
+                                            <input value="<%= proposta.numero_ativos %>" type="text" class="form-control" id="numero_ativos"
                                                 placeholder="Número de ativos" name="numero_ativos">
 
                                             <label for="">Ajuste por volume</label>
-                                            <input value="<%= proposta.ajuste_por_volume %>" type="text" class="form-control" id=""
+                                            <input value="<%= proposta.ajuste_por_volume %>" type="text" class="form-control" id="ajuste_por_volume"
                                                 placeholder="Ajuste por volume" name="ajuste_por_volume">
                                         </div>
 
@@ -138,7 +138,7 @@
 
                                         <div class="col-6 my-4">
                                             <label for="">Taxa única de ativação</label>
-                                            <input value="<%= proposta.taxa_unica_ativacao %>" type="text" class="form-control" id=""
+                                            <input value="<%= proposta.taxa_unica_ativacao %>" type="text" class="form-control" id="taxa_unica_ativacao"
                                                 placeholder="Taxa única de ativação" name="taxa_unica_ativacao">
 
                                             <label for="">Observações</label>
@@ -150,11 +150,10 @@
                                         <hr>
 
                                         <div class="col-12 text-center my-4">
-                                            <button type="button" class="btn btn-primary" onclick="modalPreview()" data-bs-toggle="modal" data-bs-target="#exampleModal">Visualizar Proposta</button>
+                                            <button type="button" class="btn btn-primary" onclick="modalPreview()" data-bs-toggle="modal" data-bs-target="#exampleModal">Pré-visualizar Proposta</button>
     
-                                            <button type="submit" class="btn btn-dark ">Gerar proposta</button>
+                                            <button type="submit" class="btn btn-dark ">Gerar e exportar proposta</button>
     
-                                            <!-- <button type="submit" class="btn btn-primary ">Exportar Proposta</button> -->
                                         </div>
 
 
@@ -194,21 +193,21 @@
                             </div>
 
                             <div class="col-6 text-center my-4">
-                                <p style="font-size: 12px;">mensalidade básica: R$0000</p>
-                            <p style="font-size: 12px;">mensalidade opicionais: R$0000</p>
+                                <p id="prevMensalidadeBasica" style="font-size: 12px;">mensalidade básica: R$0000</p>
+                            <p id="prevMensalidadeOpcionais" style="font-size: 12px;">mensalidade opicionais: R$0000</p>
                             <hr class="solid" style="width: 100%; justify-content: center; margin: auto;">
-                            <p style="font-size: 14px; font-weight: bold;">mensalidade geral: R$0000</p>   
+                            <p id="prevMensalidadeGeral" style="font-size: 14px; font-weight: bold;">mensalidade geral: R$0000</p>   
                             </div>
                             
                             <div class="col-6 text-center my-4">
-                                <p id="txUnicaWhiteLabel" style="font-size: 12px;">taxa única whitelabel: R$0000</p>
-                                <p  id="txUnicaDesenvolvimento" style="font-size: 12px;">taxa única desenvolvimento: R$0000</p>
+                                <p id="prevTxUnicaWhiteLabel" style="font-size: 12px;">taxa única whitelabel: R$0000</p>
+                                <p  id="prevTxUnicaDesenvolvimento" style="font-size: 12px;">taxa única desenvolvimento: R$0000</p>
                                 <hr class="solid" style="width: 100%; justify-content: center; margin: auto;">
-                                <p id="txUnica" style="font-size: 14px; font-weight: bold;">taxa única: R$0000</p>
+                                <p id="prevTxUnica" style="font-size: 14px; font-weight: bold;">taxa única: R$0000</p>
                             </div>
 
                             <div class="col-12 text-center">
-                                <p style="font-size: 14px; font-weight: bold;">taxa única de ativação: R$0000</p>
+                                <p id="prevTxUnicaAtivacao" style="font-size: 14px; font-weight: bold;">taxa única de ativação: R$0000</p>
                             </div>
 
                         </div>
@@ -230,71 +229,112 @@
 <script type="text/javascript">
 
     function modalPreview() {
+
+        //VARIAVEIS
         let qntHorasDev =  document.getElementById("qntd_horas").value;
         let valorHora = parseFloat("<%=tabela.horaDeDesenvolvimento%>");
 
         let numeroUsuarios = document.getElementById("numero_usuarios").value;
+        let numeroAtivos = document.getElementById("numero_ativos").value;
         let valorPorUsuario = document.getElementById("fsm1");
-        let auxFsm;
+        let fms1Price;
 
+        
         // VALOR POR USUARIO 
-        if (numeroUsuarios <= 2) { auxFsm =  parseFloat("<%=tabela.menosque2%>");valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.menosque2%>");
-        } else if (numeroUsuarios == 3) {auxFsm =  parseFloat("<%=tabela.igual3%>"); valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.igual3%>");
-        } else if (numeroUsuarios == 4) {auxFsm =  parseFloat("<%=tabela.igual4%>"); valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.igual4%>");
-        } else if (numeroUsuarios == 5) {auxFsm =  parseFloat("<%=tabela.igual5%>"); valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.igual5%>");
-        } else if (numeroUsuarios == 6) {auxFsm =  parseFloat("<%=tabela.igual6%>"); valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.igual6%>");
-        } else if (numeroUsuarios == 7) {auxFsm =  parseFloat("<%=tabela.igual7%>"); valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.igual7%>");
-        } else if (numeroUsuarios == 8) {auxFsm =  parseFloat("<%=tabela.igual8%>"); valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.igual8%>");
-        } else if (numeroUsuarios == 9) {auxFsm =  parseFloat("<%=tabela.igual9%>"); valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.igual9%>");
-        } else if (numeroUsuarios >= 10 && numeroUsuarios <= 12) {auxFsm =  parseFloat("<%=tabela.entre10e12%>"); valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.entre10e12%>");
-        } else if (numeroUsuarios >= 13 && numeroUsuarios <= 15) {auxFsm =  parseFloat("<%=tabela.entre13e15%>"); valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.entre13e15%>");
-        } else if (numeroUsuarios >= 16 && numeroUsuarios <= 21) {auxFsm =  parseFloat("<%=tabela.entre16e21%>"); valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.entre16e21%>");
-        } else if (numeroUsuarios >= 22 && numeroUsuarios <= 27) {auxFsm =  parseFloat("<%=tabela.entre22e27%>"); valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.entre22e27%>");
-        } else if (numeroUsuarios >= 28 && numeroUsuarios <= 38) {auxFsm =  parseFloat("<%=tabela.entre28e38%>"); valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.entre28e38%>");
-        } else if (numeroUsuarios >= 39 && numeroUsuarios <= 49) {auxFsm =  parseFloat("<%=tabela.entre39e49%>"); valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.entre39e49%>");
-        } else if (numeroUsuarios >= 50 && numeroUsuarios <= 60) {auxFsm =  parseFloat("<%=tabela.entre50e60%>"); valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.entre50e60%>");
-        } else if (numeroUsuarios >= 61 && numeroUsuarios <= 71) {auxFsm =  parseFloat("<%=tabela.entre61e71%>");valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.entre61e71%>");
-        } else if (numeroUsuarios >= 72 && numeroUsuarios <= 82) {auxFsm =  parseFloat("<%=tabela.entre72e82%>");valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.entre72e82%>");
-        } else if (numeroUsuarios >= 83 && numeroUsuarios <= 93) {auxFsm =  parseFloat("<%=tabela.entre83e93%>"); valorPorUsuario.innerHTML = "valor por usuário: R$" + parseFloat("<%=tabela.entre83e93%>");
-        } else if (numeroUsuarios > 93) {auxFsm =  parseFloat("<%=tabela.maisque93%>"); valorPorUsuario.innerHTML ="valor por usuário: R$" + parseFloat("<%=tabela.maisque93%>");
-        } else {valorPorusuario.innerHTML = "valor por usuário: R$0000";}
+        let prefix1 = "valor por usuário: R$";
+        if (numeroUsuarios <= 2) { fms1Price =  parseFloat("<%=tabela.menosque2%>");valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios == 3) {fms1Price =  parseFloat("<%=tabela.igual3%>"); valorPorUsuario.innerHTML = prefix1 +fms1Price;
+        } else if (numeroUsuarios == 4) {fms1Price =  parseFloat("<%=tabela.igual4%>"); valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios == 5) {fms1Price =  parseFloat("<%=tabela.igual5%>"); valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios == 6) {fms1Price =  parseFloat("<%=tabela.igual6%>"); valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios == 7) {fms1Price =  parseFloat("<%=tabela.igual7%>"); valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios == 8) {fms1Price =  parseFloat("<%=tabela.igual8%>"); valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios == 9) {fms1Price =  parseFloat("<%=tabela.igual9%>"); valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios >= 10 && numeroUsuarios <= 12) {fms1Price =  parseFloat("<%=tabela.entre10e12%>"); valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios >= 13 && numeroUsuarios <= 15) {fms1Price =  parseFloat("<%=tabela.entre13e15%>"); valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios >= 16 && numeroUsuarios <= 21) {fms1Price =  parseFloat("<%=tabela.entre16e21%>"); valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios >= 22 && numeroUsuarios <= 27) {fms1Price =  parseFloat("<%=tabela.entre22e27%>"); valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios >= 28 && numeroUsuarios <= 38) {fms1Price =  parseFloat("<%=tabela.entre28e38%>"); valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios >= 39 && numeroUsuarios <= 49) {fms1Price =  parseFloat("<%=tabela.entre39e49%>"); valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios >= 50 && numeroUsuarios <= 60) {fms1Price =  parseFloat("<%=tabela.entre50e60%>"); valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios >= 61 && numeroUsuarios <= 71) {fms1Price =  parseFloat("<%=tabela.entre61e71%>");valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios >= 72 && numeroUsuarios <= 82) {fms1Price =  parseFloat("<%=tabela.entre72e82%>");valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios >= 83 && numeroUsuarios <= 93) {fms1Price =  parseFloat("<%=tabela.entre83e93%>"); valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else if (numeroUsuarios > 93) {fms1Price =  parseFloat("<%=tabela.maisque93%>"); valorPorUsuario.innerHTML = prefix1 + fms1Price;
+        } else {valorPorusuario.innerHTML = prefix1;}
 
         // DESCONTO FSM
-        document.getElementById("fsm2").innerHTML = "desconto: " + document.getElementById("desconto").value + "%";
+        if(document.getElementById("desconto").value == ""){ document.getElementById("fsm2").innerHTML = "desconto: 0%";
+        } else { document.getElementById("fsm2").innerHTML = "desconto: " + document.getElementById("desconto").value + "%"; }
 
         // PRECO UNITARIO COM DESCONTO FSM
-        let pricefix = (1 - document.getElementById("desconto").value/100)* auxFsm;
+        let pricefix = (1 - document.getElementById("desconto").value/100)* fms1Price;
         document.getElementById("fsm3").innerHTML = "preço unitário com desconto: R$" + pricefix.toFixed(2);
         
         // MENSALIDADE PARA X USUARIOS
         let mensalidade = pricefix * numeroUsuarios;
         document.getElementById("fsm4").innerHTML = "mensalidade para " + numeroUsuarios + " usuários: R$" + mensalidade.toFixed(2);
 
+        //AJUSTE POR VOLUME
+        let ajustePorVolume = document.getElementById("ajuste_por_volume").value;
+        document.getElementById("pcm2").innerHTML = "ajuste por volume: " + ajustePorVolume + "%";
 
+        // PRECO UNITARIO COM AJUSTE
+        let pricefix2 = (1 - ajustePorVolume/100)* parseFloat("<%=tabela.valorBase%>");
+        document.getElementById("pcm3").innerHTML = "preço unitário com ajuste: R$" + pricefix2.toFixed(2);
 
+        // MENSALIDADE PARA X ATIVOS
+        let mensalidade2 = pricefix2 * numeroAtivos;
+        document.getElementById("pcm4").innerHTML = "mensalidade para " + numeroAtivos + " ativos: R$" + mensalidade2.toFixed(2);
+
+        // MENSALIDADE BASICA
+        let mensalidadeBasica = mensalidade + mensalidade2;
+        document.getElementById("prevMensalidadeBasica").innerHTML = "mensalidade básica: R$" + mensalidadeBasica.toFixed(2);
+
+        // MENSALIDADE OPCIONAIS
+        let mensalidadeOpcionaisTotal = 0;
+        
+        if(document.getElementById("dashboardAvancadoCheckbox").checked){
+            mensalidadeOpcionaisTotal += parseFloat("<%=tabela.dashboardAvancado%>");
+        }
+        if(document.getElementById("slaCheckbox").checked){
+            mensalidadeOpcionaisTotal += parseFloat("<%=tabela.sla%>");
+        }
+        if(document.getElementById("mensalidadeWhiteLabelCheckbox").checked){
+            mensalidadeOpcionaisTotal += parseFloat("<%=tabela.mensalidadeWhiteLabel%>");
+        }
+        document.getElementById("prevMensalidadeOpcionais").innerHTML = "mensalidade opcionais: R$" + mensalidadeOpcionaisTotal.toFixed(2);
+
+        // MENSALIDADE GERAL
+        let mensalidadeGeral = mensalidadeBasica + mensalidadeOpcionaisTotal;
+        document.getElementById("prevMensalidadeGeral").innerHTML = "mensalidade geral: R$" + mensalidadeGeral.toFixed(2);
+
+        //TAXA UNICA DE ATIVACAO
+        let taxaUnicaAtivacao = document.getElementById("taxa_unica_ativacao").value;
+        document.getElementById("prevTxUnicaAtivacao").innerHTML = "taxa única de ativação: R$" + taxaUnicaAtivacao;
 
 
 
 
 
         if (document.getElementById("setupWhiteLabelCheckbox").checked) {
-            document.getElementById("txUnicaWhiteLabel").innerHTML = "taxa única whitelabel: R$<%= tabela.setupWhiteLabel %>";
+            document.getElementById("prevTxUnicaWhiteLabel").innerHTML = "taxa única whitelabel: R$<%= tabela.setupWhiteLabel %>";
         } else {
-            document.getElementById("txUnicaWhiteLabel").innerHTML = "taxa única whitelabel: R$0";
+            document.getElementById("prevTxUnicaWhiteLabel").innerHTML = "taxa única whitelabel: R$0";
         }
 
         if (document.getElementById("horaDesenvolvimentoCheckbox").checked) {
-            document.getElementById("txUnicaDesenvolvimento").innerHTML = "taxa única desenvolvimento: R$" + (qntHorasDev * valorHora);
+            document.getElementById("prevTxUnicaDesenvolvimento").innerHTML = "taxa única desenvolvimento: R$" + (qntHorasDev * valorHora);
         } else {
-            document.getElementById("txUnicaDesenvolvimento").innerHTML = "taxa única desenvolvimento: R$0";
+            document.getElementById("prevTxUnicaDesenvolvimento").innerHTML = "taxa única desenvolvimento: R$0";
         }
 
         if(document.getElementById("setupWhiteLabelCheckbox").checked && document.getElementById("horaDesenvolvimentoCheckbox").checked){
-            document.getElementById("txUnica").innerHTML = "taxa única: R$"+ (parseFloat("<%=tabela.setupWhiteLabel%>") + (qntHorasDev * valorHora));
+            document.getElementById("prevTxUnica").innerHTML = "taxa única: R$"+ (parseFloat("<%=tabela.setupWhiteLabel%>") + (qntHorasDev * valorHora));
         } else if(document.getElementById("setupWhiteLabelCheckbox").checked && !document.getElementById("horaDesenvolvimentoCheckbox").checked){
-            document.getElementById("txUnica").innerHTML = "taxa única: R$"+ parseFloat("<%=tabela.setupWhiteLabel%>");
+            document.getElementById("prevTxUnica").innerHTML = "taxa única: R$"+ parseFloat("<%=tabela.setupWhiteLabel%>");
         } else if(!document.getElementById("setupWhiteLabelCheckbox").checked && document.getElementById("horaDesenvolvimentoCheckbox").checked){
-            document.getElementById("txUnica").innerHTML = "taxa única: R$"+ qntHorasDev * valorHora;
+            document.getElementById("prevTxUnica").innerHTML = "taxa única: R$"+ qntHorasDev * valorHora;
         }
     };
 </script>

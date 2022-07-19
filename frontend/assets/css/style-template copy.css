@@ -35,13 +35,13 @@ h4,
 h5,
 h6 {
   text-align: center;
-  /* font-size: 22px; */
+  font-size: 22px;
   margin-bottom: 20px;
 }
 
 input {
-  /* font-size: 14px; */
-  width: 80%;
+  font-size: 14px;
+  width: 60%;
   height: 18px;
   text-align: center;
   align-items: center;
@@ -55,10 +55,10 @@ input {
 
 label {
   margin-right: 10px;
-  /* font-size: 12px; */
+  font-size: 12px;
 }
 p {
-  /* font-size: 12px; */
+  font-size: 12px;
 }
 
 textarea {
@@ -70,7 +70,7 @@ textarea {
   border: 2px solid #ccc;
   border-radius: 4px;
   background-color: #f8f8f8;
-  /* font-size: 14px; */
+  font-size: 14px;
   resize: none;
 }
 
@@ -99,7 +99,7 @@ textarea {
   align-items: center;
   text-align: center;
   justify-content: center;
-  /* font-size: 18px; */
+  font-size: 18px;
   display: grid;
   grid-template-columns: 15% 70% 7.5% 7.5%;
 }
@@ -113,7 +113,7 @@ textarea {
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  /* font-size: 160%; */
+  font-size: 160%;
   height: 44px;
   outline: none;
   transform: translateZ(0);
@@ -187,7 +187,7 @@ textarea {
 
 #DIVSubtitulos p {
   text-align: center;
-  /* font-size: 14px; */
+  font-size: 14px;
   font-weight: 700;
   margin-bottom: 20px;
 }
@@ -313,7 +313,7 @@ textarea {
 
 #DIV2PacoteOpcional div p {
   text-align: left;
-  /* font-size: 80%; */
+  font-size: 80%;
   /* line-height: 24px; */
 }
 
@@ -424,25 +424,13 @@ textarea {
   width: 100%;
   margin: auto;
   justify-content: center;
-  /* font-size: 60%; */
+  font-size: 60%;
 }
 
 #finalText {
   width: 80%;
   margin: auto;
-  /* font-size: 60%; */
+  font-size: 60%;
   justify-content: center;
   margin-right: 30px;
-}
-
-#separa_grid1 {
-  width: 100%;
-}
-
-#separa_grid1 div{
-  justify-content: center;
-  display: grid;
-  grid-template-rows: 50% 50%;
-  width: 100%;
-  margin: auto;
 }

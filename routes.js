@@ -5,6 +5,7 @@ const homeController = require('./src/controllers/homeController');
 const loginController = require('./src/controllers/loginController');
 const propostaController = require('./src/controllers/propostaController');
 const tabelaController = require('./src/controllers/tabelaController');
+const templateController = require('./src/controllers/templateController');
 
 const { loginRequired } = require('./src/middlewares/middleware');
 
@@ -29,6 +30,8 @@ route.get('/proposta/index/:id', loginRequired, propostaController.editIndex);
 route.post('/proposta/edit/:id', loginRequired, propostaController.edit);
 route.get('/proposta/delete/:id', loginRequired, propostaController.delete);
 
-// route.get('/proposta/gerar/:id', loginRequired, propostaController.gerar);
+// Rotas template
+route.get('/template/index', loginRequired, templateController.index);
+route.get('/template/pdf/:id', loginRequired, templateController.pdf);
 
 module.exports = route;
