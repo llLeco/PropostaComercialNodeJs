@@ -9,11 +9,10 @@
 
     <script src="https://kit.fontawesome.com/91e1592299.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
-    <!-- <script src="/frontend/assets/js/html_pdf.js"></script> -->
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="/frontend/assets/css/style.css">
+
     <link rel="stylesheet" href="/frontend/assets/css/style-template.css">
 
 </head>
@@ -21,9 +20,11 @@
 <body>
     <%- include('includes/nav.ejs'); %>
 
-        <div class="container">
+    <button id="downloadPdf" onclick="" class="btn btn-primary">PDF</button>
+        
+    <div id="downloadThis" class="container">
             <div class="row">
-                <div class="proposta col-10 text-center" style="border-style: solid; border-width: 1px; margin: auto; font-size: 12px;">
+                <div class="proposta col-12 text-center" style="border-style: solid; border-width: 1px; margin: auto; font-size: 12px;">
 
                     <div id="header">
 
@@ -412,7 +413,6 @@
             
 
             // INICIO FUNÇÕES
-
             function criaData(dia, mes, ano) {
                 var dateObj = new Date();
                 var day = dateObj.getUTCDate() + dia;
@@ -437,9 +437,11 @@
 
             function formatarReal(valor) {
                 var tmp = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 });
-                tmp = 'R$ ' + tmp.replace('.', ',');
                 return tmp;
-                
+            }
+
+            function percentmask(valor) {
+                return valor = valor + '%';
             }
 
             function DEFINE_numeroUsuarios() {
@@ -448,6 +450,7 @@
 
             function DEFINE_precoUnitario() {
                 let p_numUser = parseFloat("<%=proposta.numero_usuarios%>");
+                
                 if (p_numUser <= 2) { fms1Price =  parseFloat("<%=tabela.menosque2%>");js_precoUnitario.value = formatarReal(fms1Price);
                 } else if (p_numUser == 3) {fms1Price =  parseFloat("<%=tabela.igual3%>"); js_precoUnitario.value =formatarReal(fms1Price);
                 } else if (p_numUser == 4) {fms1Price =  parseFloat("<%=tabela.igual4%>"); js_precoUnitario.value = formatarReal(fms1Price);
@@ -467,21 +470,21 @@
                 } else if (p_numUser >= 72 && p_numUser <= 82) {fms1Price =  parseFloat("<%=tabela.entre72e82%>");js_precoUnitario.value = formatarReal(fms1Price);
                 } else if (p_numUser >= 83 && p_numUser <= 93) {fms1Price =  parseFloat("<%=tabela.entre83e93%>"); js_precoUnitario.value = formatarReal(fms1Price);
                 } else if (p_numUser > 93) {fms1Price =  parseFloat("<%=tabela.maisque93%>"); js_precoUnitario.value = formatarReal(fms1Price);
-                } else {js_precoUnitario.value = prefix1;}
+                } else {js_precoUnitario.value = "";}
             }
 
             function DEFINE_desconto() {
-                js_desconto.value = parseFloat("<%=proposta.desconto%>");
+                js_desconto.value =  percentmask(parseFloat("<%=proposta.desconto%>"));
             }
 
             function DEFINE_precoUnitarioDesconto() {
-                pricefix = (1 - js_desconto.value/100)* fms1Price;
-                js_precoUnitarioDesconto.value = pricefix.toFixed(2);
+                pricefix = (1 - parseFloat("<%=proposta.desconto%>")/100)* fms1Price;
+                js_precoUnitarioDesconto.value = formatarReal(parseFloat(pricefix.toFixed(2)));
             }
 
             function DEFINE_mensalidadePlanoFSM() {
                 mensalidade = pricefix * parseFloat("<%=proposta.numero_usuarios%>");
-                js_mensalidadePlanoFSM.value =  mensalidade.toFixed(2);
+                js_mensalidadePlanoFSM.value =  formatarReal(parseFloat(mensalidade.toFixed(2)));
             }
             
             function DEFINE_numeroAtivos() {
@@ -490,32 +493,32 @@
             
             function DEFINE_valorBase() {
                 valorBase = parseFloat("<%=tabela.valorBase%>");
-                js_valorBase.value = valorBase.toFixed(2);
+                js_valorBase.value = formatarReal(parseFloat(valorBase.toFixed(2)));
             }
             
             function DEFINE_ajusteVolume() {
                 ajusteVolume = parseFloat("<%=proposta.ajuste_por_volume%>");
-                js_ajusteVolume.value = ajusteVolume
+                js_ajusteVolume.value = percentmask(ajusteVolume);
             }
 
             function DEFINE_precoUnitarioAjustado() {
-                pricefix2 = (1 - js_ajusteVolume.value/100) * valorBase;
-                js_precoUnitarioAjustado.value = pricefix2.toFixed(2);
+                pricefix2 = (1 - parseFloat("<%=proposta.ajuste_por_volume%>")/100) * valorBase;
+                js_precoUnitarioAjustado.value = formatarReal(parseFloat(pricefix2.toFixed(2)));
             }
 
             function DEFINE_mensalidadePlanoPCM() {
                 mensalidade2 = pricefix2 * parseFloat("<%=proposta.numero_ativos%>");
-                js_mensalidadePlanoPCM.value = mensalidade2.toFixed(2);
+                js_mensalidadePlanoPCM.value = formatarReal(parseFloat(mensalidade2.toFixed(2)));
             }
 
             function DEFINE_mensalidadeBasica() {
                 mensalidadeBasica = mensalidade + mensalidade2;
-                js_mensalidadeBasica.value = formatarReal(mensalidadeBasica.toFixed(2));
+                js_mensalidadeBasica.value = formatarReal(parseFloat(mensalidadeBasica.toFixed(2)));
             }
 
             function DEFINE_taxaAtivacaoUnica() {
                 taxaAtivacaoUnica = parseFloat("<%=proposta.taxa_unica_ativacao%>");
-                js_taxaAtivacao.value = formatarReal(taxaAtivacaoUnica.toFixed(2));
+                js_taxaAtivacao.value = formatarReal(parseFloat(taxaAtivacaoUnica.toFixed(2)));
             }
 
             
@@ -526,7 +529,7 @@
                 }
             }
             function DEFINE_setupWhiteLabel() {
-                js_setupWhiteLabel.value = parseFloat("<%=tabela.setupWhiteLabel%>");
+                js_setupWhiteLabel.value = formatarReal(parseFloat("<%=tabela.setupWhiteLabel%>"));
             }
             
             function STATUScheckBox2() {
@@ -536,7 +539,7 @@
                 }
             }
             function DEFINE_mensalidadeWhiteLabel() {
-                js_mensalidadeWhiteLabel.value = parseFloat("<%=tabela.mensalidadeWhiteLabel%>");
+                js_mensalidadeWhiteLabel.value = formatarReal(parseFloat("<%=tabela.mensalidadeWhiteLabel%>"));
             }
 
             function STATUScheckBox3() {
@@ -546,7 +549,7 @@
                 }
             }
             function DEFINE_dashboardAvancado() {
-                js_dashboardAvancado.value = parseFloat("<%=tabela.dashboardAvancado%>");
+                js_dashboardAvancado.value = formatarReal(parseFloat("<%=tabela.dashboardAvancado%>"));
             }
             
             function STATUScheckBox4() {
@@ -556,7 +559,7 @@
                 }
             }
             function DEFINE_sla() {
-                js_sla.value = parseFloat("<%=tabela.sla%>");
+                js_sla.value = formatarReal(parseFloat("<%=tabela.sla%>"));
             }
             
             function STATUScheckBox5() {
@@ -564,10 +567,11 @@
                     js_checkBox5.checked = "checked";
                     DEFINE_horaDesenvolvimento()
                     DEFINE_qntHorasDev()
+                    DEFINE_desenvolvimentoUnico()
                 }
             }
             function DEFINE_horaDesenvolvimento() {
-                js_horaDesenvolvimento.value = parseFloat("<%=tabela.horaDeDesenvolvimento%>");
+                js_horaDesenvolvimento.value = formatarReal(parseFloat("<%=tabela.horaDeDesenvolvimento%>"));
             }
             function DEFINE_qntHorasDev() {
                 js_qntHorasDev.value = parseFloat("<%=proposta.qntd_horas%>");
@@ -575,33 +579,42 @@
             
             function DEFINE_mensalidadeOpcionais() {
                 mensalidadeOpcionais = parseFloat("<%=tabela.mensalidadeWhiteLabel%>") + parseFloat("<%=tabela.dashboardAvancado%>") + parseFloat("<%=tabela.sla%>");
-                js_mensalidadeOpcionais.value = mensalidadeOpcionais.toFixed(2);
+                js_mensalidadeOpcionais.value = formatarReal(parseFloat(mensalidadeOpcionais.toFixed(2)));
 
             }
 
             function DEFINE_setupWhiteLabelUnico() {
                 setupWhiteLabelUnico = parseFloat("<%=tabela.setupWhiteLabel%>");
-                js_setupWhiteLabelUnico.value = setupWhiteLabelUnico.toFixed(2);
+                js_setupWhiteLabelUnico.value = formatarReal(parseFloat(setupWhiteLabelUnico.toFixed(2)));
             }
 
             function DEFINE_desenvolvimentoUnico() {
                 desenvolvimentoUnico = parseFloat("<%=tabela.horaDeDesenvolvimento%>") * parseFloat("<%=proposta.qntd_horas%>")
-                js_desenvolvimentoUnico.value = desenvolvimentoUnico.toFixed(2);
+                js_desenvolvimentoUnico.value = formatarReal(parseFloat(desenvolvimentoUnico.toFixed(2)));
             }
 
             function DEFINE_taxaAtivacaoFIM() {
                 taxaAtivacaoFIM = parseFloat("<%=proposta.taxa_unica_ativacao%>")
-                js_FIM_taxaAtivacao.value = taxaAtivacaoFIM.toFixed(2);
+                js_FIM_taxaAtivacao.value = formatarReal(parseFloat(taxaAtivacaoFIM.toFixed(2)));
             }
 
             function DEFINE_mensalidadeGeralFIM() {
                 mensalidadeGeralFIM = mensalidadeOpcionais + mensalidadeBasica;
-                js_FIM_mensalidadeGeral.value = mensalidadeGeralFIM.toFixed(2);
+                js_FIM_mensalidadeGeral.value = formatarReal(parseFloat(mensalidadeGeralFIM.toFixed(2)));
             }
 
             function DEFINE_taxaunicaWL_DEV() {
-                taxaunicaWL_DEV = desenvolvimentoUnico + setupWhiteLabelUnico;
-                js_taxaUnicaWL_DEV.value = taxaunicaWL_DEV.toFixed(2);
+                if(desenvolvimentoUnico > 0 && setupWhiteLabelUnico > 0) {
+                    taxaunicaWL_DEV = desenvolvimentoUnico + setupWhiteLabelUnico;
+                    js_taxaUnicaWL_DEV.value = formatarReal(parseFloat(taxaunicaWL_DEV.toFixed(2)));
+
+                } else if(desenvolvimentoUnico == null || setupWhiteLabelUnico > 0){
+                    taxaunicaWL_DEV = setupWhiteLabelUnico;
+                    js_taxaUnicaWL_DEV.value = formatarReal(parseFloat(taxaunicaWL_DEV.toFixed(2)));
+                } else if(desenvolvimentoUnico > 0 || setupWhiteLabelUnico == null){
+                    taxaunicaWL_DEV = desenvolvimentoUnico;
+                    js_taxaUnicaWL_DEV.value = formatarReal(parseFloat(taxaunicaWL_DEV.toFixed(2)));
+                } 
             }
 
             // FIM FUNÇÕES
@@ -610,8 +623,25 @@
                 DEFINE_numeroUsuarios(); DEFINE_precoUnitario();DEFINE_desconto();DEFINE_precoUnitarioDesconto();DEFINE_mensalidadePlanoFSM();
                 DEFINE_numeroAtivos(); DEFINE_valorBase();DEFINE_ajusteVolume();DEFINE_precoUnitarioAjustado();DEFINE_mensalidadePlanoPCM();DEFINE_mensalidadeBasica();DEFINE_taxaAtivacaoUnica();
                 STATUScheckBox1();STATUScheckBox2();STATUScheckBox3();STATUScheckBox4();STATUScheckBox5();
-                DEFINE_mensalidadeOpcionais();DEFINE_setupWhiteLabelUnico();DEFINE_desenvolvimentoUnico();
+                DEFINE_mensalidadeOpcionais();DEFINE_setupWhiteLabelUnico();
                 DEFINE_taxaAtivacaoFIM();DEFINE_mensalidadeGeralFIM();DEFINE_taxaunicaWL_DEV();
+
+                document.getElementById("downloadPdf").addEventListener("click", () => {
+                    // downloadPdf.style.display = 'none';
+
+                    const downloadThis = this.document.getElementById("downloadThis");
+
+                    var opt = {
+                        margin: 0,
+                        filename: 'Proposta Comercial Iliot.pdf',
+                        image: { type: 'jpeg', quality: 0.98 },
+                        html2canvas: { scale: 2 },
+                        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                    };
+
+                    html2pdf().from(downloadThis).set(opt).save();
+
+                })
             }
 
         </script>

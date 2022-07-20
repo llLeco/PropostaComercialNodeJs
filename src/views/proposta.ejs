@@ -52,9 +52,11 @@
                                             <input value="<%= proposta.numero_usuarios %>" type="text" class="form-control" id="numero_usuarios"
                                                 placeholder="Número de usuários" name="numero_usuarios">
 
-                                            <label for="">Desconto</label>
-                                            <input value="<%= proposta.desconto %>" type="text" class="form-control" id="desconto"
-                                                placeholder="Desconto" name="desconto">
+                                            <div class="input-group mb-3 my-4">
+                                                <input value="<%= proposta.desconto %>" id="desconto" name="desconto" type="text" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                                                <span class="input-group-text" id="basic-addon1">%</span>
+                                            </div>
+
                                         </div>
 
                                         <div class="col-6 my-4">
@@ -64,9 +66,11 @@
                                             <input value="<%= proposta.numero_ativos %>" type="text" class="form-control" id="numero_ativos"
                                                 placeholder="Número de ativos" name="numero_ativos">
 
-                                            <label for="">Ajuste por volume</label>
-                                            <input value="<%= proposta.ajuste_por_volume %>" type="text" class="form-control" id="ajuste_por_volume"
-                                                placeholder="Ajuste por volume" name="ajuste_por_volume">
+                                            <div class="input-group mb-3 my-4">
+                                                <input value="<%= proposta.ajuste_por_volume %>" id="ajuste_por_volume" name="ajuste_por_volume" type="text" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                                                <span class="input-group-text" id="basic-addon1">%</span>
+                                            </div>
+
                                         </div>
 
                                         <hr>
