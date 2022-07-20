@@ -435,31 +435,38 @@
                     , false);
             }
 
+            function formatarReal(valor) {
+                var tmp = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 });
+                tmp = 'R$ ' + tmp.replace('.', ',');
+                return tmp;
+                
+            }
+
             function DEFINE_numeroUsuarios() {
                 js_numeroUsuarios.value = parseFloat("<%=proposta.numero_usuarios%>");
             }
 
             function DEFINE_precoUnitario() {
                 let p_numUser = parseFloat("<%=proposta.numero_usuarios%>");
-                if (p_numUser <= 2) { fms1Price =  parseFloat("<%=tabela.menosque2%>");js_precoUnitario.value = fms1Price;
-                } else if (p_numUser == 3) {fms1Price =  parseFloat("<%=tabela.igual3%>"); js_precoUnitario.value =fms1Price;
-                } else if (p_numUser == 4) {fms1Price =  parseFloat("<%=tabela.igual4%>"); js_precoUnitario.value = fms1Price;
-                } else if (p_numUser == 5) {fms1Price =  parseFloat("<%=tabela.igual5%>"); js_precoUnitario.value = fms1Price;
-                } else if (p_numUser == 6) {fms1Price =  parseFloat("<%=tabela.igual6%>"); js_precoUnitario.value = fms1Price;
-                } else if (p_numUser == 7) {fms1Price =  parseFloat("<%=tabela.igual7%>"); js_precoUnitario.value = fms1Price;
-                } else if (p_numUser == 8) {fms1Price =  parseFloat("<%=tabela.igual8%>"); js_precoUnitario.value = fms1Price;
-                } else if (p_numUser == 9) {fms1Price =  parseFloat("<%=tabela.igual9%>"); js_precoUnitario.value = fms1Price;
-                } else if (p_numUser >= 10 && p_numUser <= 12) {fms1Price =  parseFloat("<%=tabela.entre10e12%>"); js_precoUnitario.value = fms1Price;
-                } else if (p_numUser >= 13 && p_numUser <= 15) {fms1Price =  parseFloat("<%=tabela.entre13e15%>"); js_precoUnitario.value = fms1Price;
-                } else if (p_numUser >= 16 && p_numUser <= 21) {fms1Price =  parseFloat("<%=tabela.entre16e21%>"); js_precoUnitario.value = fms1Price;
-                } else if (p_numUser >= 22 && p_numUser <= 27) {fms1Price =  parseFloat("<%=tabela.entre22e27%>"); js_precoUnitario.value = fms1Price;
-                } else if (p_numUser >= 28 && p_numUser <= 38) {fms1Price =  parseFloat("<%=tabela.entre28e38%>"); js_precoUnitario.value = fms1Price;
-                } else if (p_numUser >= 39 && p_numUser <= 49) {fms1Price =  parseFloat("<%=tabela.entre39e49%>"); js_precoUnitario.value = fms1Price;
-                } else if (p_numUser >= 50 && p_numUser <= 60) {fms1Price =  parseFloat("<%=tabela.entre50e60%>"); js_precoUnitario.value = fms1Price;
-                } else if (p_numUser >= 61 && p_numUser <= 71) {fms1Price =  parseFloat("<%=tabela.entre61e71%>");js_precoUnitario.value = fms1Price;
-                } else if (p_numUser >= 72 && p_numUser <= 82) {fms1Price =  parseFloat("<%=tabela.entre72e82%>");js_precoUnitario.value = fms1Price;
-                } else if (p_numUser >= 83 && p_numUser <= 93) {fms1Price =  parseFloat("<%=tabela.entre83e93%>"); js_precoUnitario.value = fms1Price;
-                } else if (p_numUser > 93) {fms1Price =  parseFloat("<%=tabela.maisque93%>"); js_precoUnitario.value = fms1Price;
+                if (p_numUser <= 2) { fms1Price =  parseFloat("<%=tabela.menosque2%>");js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser == 3) {fms1Price =  parseFloat("<%=tabela.igual3%>"); js_precoUnitario.value =formatarReal(fms1Price);
+                } else if (p_numUser == 4) {fms1Price =  parseFloat("<%=tabela.igual4%>"); js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser == 5) {fms1Price =  parseFloat("<%=tabela.igual5%>"); js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser == 6) {fms1Price =  parseFloat("<%=tabela.igual6%>"); js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser == 7) {fms1Price =  parseFloat("<%=tabela.igual7%>"); js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser == 8) {fms1Price =  parseFloat("<%=tabela.igual8%>"); js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser == 9) {fms1Price =  parseFloat("<%=tabela.igual9%>"); js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 10 && p_numUser <= 12) {fms1Price =  parseFloat("<%=tabela.entre10e12%>"); js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 13 && p_numUser <= 15) {fms1Price =  parseFloat("<%=tabela.entre13e15%>"); js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 16 && p_numUser <= 21) {fms1Price =  parseFloat("<%=tabela.entre16e21%>"); js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 22 && p_numUser <= 27) {fms1Price =  parseFloat("<%=tabela.entre22e27%>"); js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 28 && p_numUser <= 38) {fms1Price =  parseFloat("<%=tabela.entre28e38%>"); js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 39 && p_numUser <= 49) {fms1Price =  parseFloat("<%=tabela.entre39e49%>"); js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 50 && p_numUser <= 60) {fms1Price =  parseFloat("<%=tabela.entre50e60%>"); js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 61 && p_numUser <= 71) {fms1Price =  parseFloat("<%=tabela.entre61e71%>");js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 72 && p_numUser <= 82) {fms1Price =  parseFloat("<%=tabela.entre72e82%>");js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 83 && p_numUser <= 93) {fms1Price =  parseFloat("<%=tabela.entre83e93%>"); js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser > 93) {fms1Price =  parseFloat("<%=tabela.maisque93%>"); js_precoUnitario.value = formatarReal(fms1Price);
                 } else {js_precoUnitario.value = prefix1;}
             }
 
@@ -503,12 +510,12 @@
 
             function DEFINE_mensalidadeBasica() {
                 mensalidadeBasica = mensalidade + mensalidade2;
-                js_mensalidadeBasica.value = mensalidadeBasica.toFixed(2);
+                js_mensalidadeBasica.value = formatarReal(mensalidadeBasica.toFixed(2));
             }
 
             function DEFINE_taxaAtivacaoUnica() {
                 taxaAtivacaoUnica = parseFloat("<%=proposta.taxa_unica_ativacao%>");
-                js_taxaAtivacao.value = taxaAtivacaoUnica.toFixed(2);
+                js_taxaAtivacao.value = formatarReal(taxaAtivacaoUnica.toFixed(2));
             }
 
             
@@ -600,36 +607,11 @@
             // FIM FUNÇÕES
 
             window.onload = function() {
-
-                DEFINE_numeroUsuarios();
-                DEFINE_precoUnitario();
-                DEFINE_desconto();
-                DEFINE_precoUnitarioDesconto();
-                DEFINE_mensalidadePlanoFSM();
-
-                DEFINE_numeroAtivos();
-                DEFINE_valorBase();
-                DEFINE_ajusteVolume();
-                DEFINE_precoUnitarioAjustado();
-                DEFINE_mensalidadePlanoPCM();
-
-                DEFINE_mensalidadeBasica();
-                DEFINE_taxaAtivacaoUnica();
-
-                STATUScheckBox1();
-                STATUScheckBox2();
-                STATUScheckBox3();
-                STATUScheckBox4();
-                STATUScheckBox5();
-
-                DEFINE_mensalidadeOpcionais();
-                DEFINE_setupWhiteLabelUnico();
-                DEFINE_desenvolvimentoUnico();
-
-                DEFINE_taxaAtivacaoFIM();
-                DEFINE_mensalidadeGeralFIM();
-                DEFINE_taxaunicaWL_DEV();
-
+                DEFINE_numeroUsuarios(); DEFINE_precoUnitario();DEFINE_desconto();DEFINE_precoUnitarioDesconto();DEFINE_mensalidadePlanoFSM();
+                DEFINE_numeroAtivos(); DEFINE_valorBase();DEFINE_ajusteVolume();DEFINE_precoUnitarioAjustado();DEFINE_mensalidadePlanoPCM();DEFINE_mensalidadeBasica();DEFINE_taxaAtivacaoUnica();
+                STATUScheckBox1();STATUScheckBox2();STATUScheckBox3();STATUScheckBox4();STATUScheckBox5();
+                DEFINE_mensalidadeOpcionais();DEFINE_setupWhiteLabelUnico();DEFINE_desenvolvimentoUnico();
+                DEFINE_taxaAtivacaoFIM();DEFINE_mensalidadeGeralFIM();DEFINE_taxaunicaWL_DEV();
             }
 
         </script>

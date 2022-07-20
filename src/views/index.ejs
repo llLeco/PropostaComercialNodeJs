@@ -11,8 +11,9 @@
                             Página Inicial
                         </h1>
                         <p>
-                            Crie, edite e exclua suas Propostas Comerciais
+                            Crie, edite e exclua suas Propostas Comerciais 
                         </p>
+                        
                     </div>
 
                     <div class="conteiner my-4">
@@ -45,25 +46,42 @@
 
                     </div>
 
+                    <p>
+                        
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                          Visualizar Todas as Propostas Comerciais
+                        </button>
+                      </p>
+                      <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            
+                            <div class="container">
+                                <div class="row" >
+                                  
+                                    <% if(propostas.length > 0 ) { %>
+                                        <% propostas.forEach((proposta, req) => { %>
+                                            
+                                            <% if( usuario  === proposta.account_id && usuario != null) { %>
+                                                
+                                                    <div class="card my-2 " style="width: 30.5%; margin: 10px;">
+                                                        <img class="card-img-top" src="/frontend/assets/img/logoiliotcut.png" alt="Card image cap" style="width: 50%; margin: auto; padding: 10px;">
+                                                        <div class="card-body">
+                                                        <h5 class="card-title" style="font-size: 14px;">Proposta Comercial de <%=proposta.razao_social%></h5>
+                                                        <a href="/proposta/index/<%= proposta._id %>" class="btn btn-primary my-1"style="font-size: 14px;">Ver ou Editar</a>
+                                                        <a href="/proposta/delete/<%= proposta._id %>" class="btn btn-danger my-1"style="font-size: 14px;">Excluir</i></a>
+                                                        </div>
+                                                    </div>
+                                                <% } %>
+                                            <% }); %>       
+                                        <% } %>
+                             
+                                </div>
+                            </div>
+                        
+                        </div>
+                      </div>
                 
-                        <% if(propostas.length > 0 ) { %>
-                            <% propostas.forEach((proposta, req) => { %>
-
-                                <% if( usuario  === proposta.account_id && usuario != null) { %>
-
-                                    <div class="card my-2 text-center" style="width: 12rem; margin: 10px;">
-                                        <img class="card-img-top" src="/frontend/assets/img/logoiliotcut.png" alt="Card image cap" style="width: 50%; margin: auto; padding: 10px;">
-                                        <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 14px;">Proposta Comercial de <%=proposta.razao_social%></h5>
-                                        <a href="/proposta/index/<%= proposta._id %>" class="btn btn-primary my-1"style="font-size: 14px;">Ver ou Editar</a>
-                                        <a href="/proposta/delete/<%= proposta._id %>" class="btn btn-danger my-1"style="font-size: 14px;">Excluir</a>
-                                        </div>
-                                    </div>
-
-                                <% } %>
-                            <% }); %>       
-                        <% } %>
-
+                        
                 <% } else { %>
                     <div class="col-md-12 my-4">
                         <h1>Faça o login para acessar o sistema</h1>
