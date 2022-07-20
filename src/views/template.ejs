@@ -389,14 +389,10 @@
             let js_checkBox3 = document.getElementById('checkBox3');
             let js_sla = document.getElementById('sla');
             let js_checkBox4 = document.getElementById('checkBox4');
-            let js_DIVconexaoIot = document.getElementById('DIVconexaoIot');
-            let js_conexaoIot = document.getElementById('conexaoIot');
-            let js_qntIot = document.getElementById('qntIot');
-            let js_checkBox5 = document.getElementById('checkBox5');
             let js_DIVhoraDesenvolvimento = document.getElementById('DIVhoraDesenvolvimento');
             let js_horaDesenvolvimento = document.getElementById('horaDesenvolvimento');
             let js_qntHorasDev = document.getElementById('qntHorasDev');
-            let js_checkBox6 = document.getElementById('checkBox6');
+            let js_checkBox5 = document.getElementById('checkBox6');
             let js_mensalidadeOpcionais = document.getElementById('mensalidadeOpcionais');
             let js_setupWhiteLabelUnico = document.getElementById('setupWhiteLabelUnico');
             let js_desenvolvimentoUnico = document.getElementById('desenvolvimentoUnico');
@@ -411,7 +407,8 @@
             // FIM DECLARAÇÃO DE VARIAVEIS
             dataProposta.value = criaData(0, 0, 0);
             validadeProposta.value = criaData(0, 1, 0);
-            let valorBase, fms1Price, pricefix, mensalidade = 0;
+            let valorBase, fms1Price, pricefix, mensalidade, pricefix2, mensalidade2, mensalidadeOpcionais,
+             mensalidadeBasica, desenvolvimentoUnico, setupWhiteLabelUnico = 0;
             
 
             // INICIO FUNÇÕES
@@ -495,93 +492,112 @@
             }
 
             function DEFINE_precoUnitarioAjustado() {
-            
+                pricefix2 = (1 - js_ajusteVolume.value/100) * valorBase;
+                js_precoUnitarioAjustado.value = pricefix2.toFixed(2);
             }
 
             function DEFINE_mensalidadePlanoPCM() {
-
+                mensalidade2 = pricefix2 * parseFloat("<%=proposta.numero_ativos%>");
+                js_mensalidadePlanoPCM.value = mensalidade2.toFixed(2);
             }
 
             function DEFINE_mensalidadeBasica() {
-
+                mensalidadeBasica = mensalidade + mensalidade2;
+                js_mensalidadeBasica.value = mensalidadeBasica.toFixed(2);
             }
 
+            function DEFINE_taxaAtivacaoUnica() {
+                taxaAtivacaoUnica = parseFloat("<%=proposta.taxa_unica_ativacao%>");
+                js_taxaAtivacao.value = taxaAtivacaoUnica.toFixed(2);
+            }
+
+            
             function STATUScheckBox1() {
-
+                if ("<%=proposta.setupWhiteLabelCheckbox%>" === "on") {
+                    js_checkBox1.checked = "checked";
+                    DEFINE_setupWhiteLabel()
+                }
             }
-
+            function DEFINE_setupWhiteLabel() {
+                js_setupWhiteLabel.value = parseFloat("<%=tabela.setupWhiteLabel%>");
+            }
+            
             function STATUScheckBox2() {
-
+                if ("<%=proposta.mensalidadeWhiteLabelCheckbox%>" === "on") {
+                    js_checkBox2.checked = "checked";
+                    DEFINE_mensalidadeWhiteLabel()
+                }
+            }
+            function DEFINE_mensalidadeWhiteLabel() {
+                js_mensalidadeWhiteLabel.value = parseFloat("<%=tabela.mensalidadeWhiteLabel%>");
             }
 
             function STATUScheckBox3() {
-
+                if ("<%=proposta.dashboardAvancadoCheckbox%>" === "on") {
+                    js_checkBox3.checked = "checked";
+                    DEFINE_dashboardAvancado()
+                }
             }
-
+            function DEFINE_dashboardAvancado() {
+                js_dashboardAvancado.value = parseFloat("<%=tabela.dashboardAvancado%>");
+            }
+            
             function STATUScheckBox4() {
-
+                if ("<%=proposta.slaCheckbox%>" === "on") {
+                    js_checkBox4.checked = "checked";
+                    DEFINE_sla()
+                }
             }
-
+            function DEFINE_sla() {
+                js_sla.value = parseFloat("<%=tabela.sla%>");
+            }
+            
             function STATUScheckBox5() {
-
+                if ("<%=proposta.horaDesenvolvimentoCheckbox%>" === "on") {
+                    js_checkBox5.checked = "checked";
+                    DEFINE_horaDesenvolvimento()
+                    DEFINE_qntHorasDev()
+                }
             }
-
-            function STATUScheckBox6() {
-
+            function DEFINE_horaDesenvolvimento() {
+                js_horaDesenvolvimento.value = parseFloat("<%=tabela.horaDeDesenvolvimento%>");
             }
-
+            function DEFINE_qntHorasDev() {
+                js_qntHorasDev.value = parseFloat("<%=proposta.qntd_horas%>");
+            }
+            
             function DEFINE_mensalidadeOpcionais() {
-
+                mensalidadeOpcionais = parseFloat("<%=tabela.mensalidadeWhiteLabel%>") + parseFloat("<%=tabela.dashboardAvancado%>") + parseFloat("<%=tabela.sla%>");
+                js_mensalidadeOpcionais.value = mensalidadeOpcionais.toFixed(2);
 
             }
 
             function DEFINE_setupWhiteLabelUnico() {
-
+                setupWhiteLabelUnico = parseFloat("<%=tabela.setupWhiteLabel%>");
+                js_setupWhiteLabelUnico.value = setupWhiteLabelUnico.toFixed(2);
             }
 
             function DEFINE_desenvolvimentoUnico() {
-
+                desenvolvimentoUnico = parseFloat("<%=tabela.horaDeDesenvolvimento%>") * parseFloat("<%=proposta.qntd_horas%>")
+                js_desenvolvimentoUnico.value = desenvolvimentoUnico.toFixed(2);
             }
 
             function DEFINE_taxaAtivacaoFIM() {
-
+                taxaAtivacaoFIM = parseFloat("<%=proposta.taxa_unica_ativacao%>")
+                js_FIM_taxaAtivacao.value = taxaAtivacaoFIM.toFixed(2);
             }
 
             function DEFINE_mensalidadeGeralFIM() {
-
+                mensalidadeGeralFIM = mensalidadeOpcionais + mensalidadeBasica;
+                js_FIM_mensalidadeGeral.value = mensalidadeGeralFIM.toFixed(2);
             }
 
             function DEFINE_taxaunicaWL_DEV() {
-
+                taxaunicaWL_DEV = desenvolvimentoUnico + setupWhiteLabelUnico;
+                js_taxaUnicaWL_DEV.value = taxaunicaWL_DEV.toFixed(2);
             }
 
-
-            function DEFINE_taxaAtivacaoUnica() {}
-
-            function DEFINE_setupWhiteLabel() {}
-
-            function DEFINE_mensalidadeWhiteLabel() {}
-
-            function DEFINE_dashboardAvancado() {}
-
-            function DEFINE_sla() {}
-
-            function DEFINE_conexaoIot() {}
-
-            function DEFINE_qntIot() {}
-
-            function DEFINE_horaDesenvolvimento() {}
-
-            function DEFINE_qntHorasDev() {}
-
-            function DEFINE_vencimentoTaxaAtivacao() {}
-
-            function DEFINE_emailCobranca() {}
-
-            function DEFINE_formaPagamento() {}
-
             // FIM FUNÇÕES
-
 
             window.onload = function() {
 
@@ -605,24 +621,14 @@
                 STATUScheckBox3();
                 STATUScheckBox4();
                 STATUScheckBox5();
-                STATUScheckBox6();
+
                 DEFINE_mensalidadeOpcionais();
                 DEFINE_setupWhiteLabelUnico();
                 DEFINE_desenvolvimentoUnico();
+
                 DEFINE_taxaAtivacaoFIM();
                 DEFINE_mensalidadeGeralFIM();
                 DEFINE_taxaunicaWL_DEV();
-                DEFINE_setupWhiteLabel();
-                DEFINE_mensalidadeWhiteLabel();
-                DEFINE_dashboardAvancado();
-                DEFINE_sla();
-                DEFINE_conexaoIot();
-                DEFINE_qntIot();
-                DEFINE_horaDesenvolvimento();
-                DEFINE_qntHorasDev();
-                DEFINE_vencimentoTaxaAtivacao();
-                DEFINE_emailCobranca();
-                DEFINE_formaPagamento();
 
             }
 

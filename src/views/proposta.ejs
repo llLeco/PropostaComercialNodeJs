@@ -152,7 +152,18 @@
                                         <div class="col-12 text-center my-4">
                                             <button type="button" class="btn btn-primary" onclick="modalPreview()" data-bs-toggle="modal" data-bs-target="#exampleModal">Pré-visualizar Proposta</button>
     
-                                            <button type="submit" class="btn btn-dark ">Gerar e exportar proposta</button>
+                                            
+                                            <% if(proposta._id) { %>
+
+                                                <button type="submit" class="btn btn-success ">Editar Proposta</button>
+                                                <a href="/template/pdf/<%=proposta._id%>"> <button type="button" class="btn btn-dark">Exportar proposta</button> </a>
+
+                                                <% } else { %>
+
+                                                    <button type="submit" class="btn btn-dark ">Gerar e exportar proposta</button>
+
+                                                    <% } %>
+
     
                                         </div>
 
@@ -214,9 +225,8 @@
                     </div>
                 </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-                    <button type="button" class="btn btn-primary">Gerar Proposta</button>
+                <div class="modal-footer" style="justify-content:center;">
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal" style="width: 30%;">OK</button>
                 </div>
 
             </div>

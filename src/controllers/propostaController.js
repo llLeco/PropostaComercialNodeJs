@@ -32,9 +32,11 @@ exports.editIndex = async function(req, res) {
   if(!req.params.id) return res.render('404');
 
   const proposta = await Proposta.buscaPorId(req.params.id);
+  const tabela = await Tabela.buscaPorId('62d5bd0d02788821a0bc5f4e');
+
   if(!proposta) return res.render('404');
 
-  res.render('proposta', { proposta });
+  res.render('proposta', { proposta, tabela });
 };
 
 exports.edit = async function(req, res) {
