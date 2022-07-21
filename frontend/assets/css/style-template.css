@@ -4,7 +4,7 @@
   padding: 0px;
 }
 
-html {
+body {
   background-color: rgb(237, 236, 236);
 }
 
@@ -337,12 +337,13 @@ textarea {
   /* background-color: rgb(80, 255, 124); */
   padding: 0px;
   text-align: center;
+  margin:auto;
 }
 
 #DIVComment p {
-  width: 80%;
+  width: 50%;
   margin: auto;
-  justify-content: center;
+  text-align: center;
 }
 
 /* DIV DAS ULTIMAS FORMS */
