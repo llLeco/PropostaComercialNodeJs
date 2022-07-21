@@ -369,7 +369,8 @@
             var EjsTab = '<%-JSON.stringify(tabela)%>';
             let tab = JSON.parse(EjsTab);
             const tabId = "<%=proposta.tabela_id%>";
-            const index = tab.findIndex(obj => {return obj._id == tabId});
+            // const index = tab.findIndex(obj => {return obj._id == tabId});
+            const index = tab.indexOf(tab.find(obj => {return obj._id == tabId}));
             const tabela = tab[index];
 
 
