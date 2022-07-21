@@ -30,16 +30,14 @@
 
                             <div class="col-6">
                                 <% if(tabelas.length> 0) { %>
-
-                                    <% tabelas.forEach(tabela=> { %>
+                                    <% const numTabelas = tabelas.length - 1; %>
 
                                         <div class="tableBtn">
-                                            <a href="/tabela/index/<%= tabela._id %>" class="btn btn-dark">
-                                                <button type="button" class="btn btn-dark btn-lg">Editar tabela de
-                                                    valores</button>
+                                            <a href="/tabela/index/<%= tabelas[numTabelas]._id %>" class="btn btn-dark">
+                                                <button type="button" class="btn btn-dark btn-lg">Editar tabela de valores</button>
                                             </a>
                                         </div>
-                                    <% }); %>
+                
                                 <% } %>
                             </div>
                         </div>

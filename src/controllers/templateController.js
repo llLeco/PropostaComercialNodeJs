@@ -7,7 +7,7 @@ exports.index = async (req, res) => {
 };
 
 exports.pdf = async (req, res) => {
-    const tabela = await Tabela.buscaPorId('62d5bd0d02788821a0bc5f4e');
+    const tabela = await Tabela.buscaTabelas();
     const proposta = await Proposta.buscaPorId(req.params.id);
     res.render('template', { tabela, proposta });
 }

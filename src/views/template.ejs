@@ -359,8 +359,15 @@
             </div>
         </div>
 
-
         <script type="text/javascript">
+
+            var EjsTab = '<%-JSON.stringify(tabela)%>';
+            let tab = JSON.parse(EjsTab);
+            const tabId = "<%=proposta.tabela_id%>";
+            const index = tab.findIndex(obj => {return obj._id == tabId});
+            const tabela = tab[index];
+
+
             // HEADER
             let js_razaoSocial = document.getElementById('razaoSocial');
             let js_cnpj = document.getElementById('cnpj');
@@ -451,25 +458,25 @@
             function DEFINE_precoUnitario() {
                 let p_numUser = parseFloat("<%=proposta.numero_usuarios%>");
                 
-                if (p_numUser <= 2) { fms1Price =  parseFloat("<%=tabela.menosque2%>");js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser == 3) {fms1Price =  parseFloat("<%=tabela.igual3%>"); js_precoUnitario.value =formatarReal(fms1Price);
-                } else if (p_numUser == 4) {fms1Price =  parseFloat("<%=tabela.igual4%>"); js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser == 5) {fms1Price =  parseFloat("<%=tabela.igual5%>"); js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser == 6) {fms1Price =  parseFloat("<%=tabela.igual6%>"); js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser == 7) {fms1Price =  parseFloat("<%=tabela.igual7%>"); js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser == 8) {fms1Price =  parseFloat("<%=tabela.igual8%>"); js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser == 9) {fms1Price =  parseFloat("<%=tabela.igual9%>"); js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser >= 10 && p_numUser <= 12) {fms1Price =  parseFloat("<%=tabela.entre10e12%>"); js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser >= 13 && p_numUser <= 15) {fms1Price =  parseFloat("<%=tabela.entre13e15%>"); js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser >= 16 && p_numUser <= 21) {fms1Price =  parseFloat("<%=tabela.entre16e21%>"); js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser >= 22 && p_numUser <= 27) {fms1Price =  parseFloat("<%=tabela.entre22e27%>"); js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser >= 28 && p_numUser <= 38) {fms1Price =  parseFloat("<%=tabela.entre28e38%>"); js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser >= 39 && p_numUser <= 49) {fms1Price =  parseFloat("<%=tabela.entre39e49%>"); js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser >= 50 && p_numUser <= 60) {fms1Price =  parseFloat("<%=tabela.entre50e60%>"); js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser >= 61 && p_numUser <= 71) {fms1Price =  parseFloat("<%=tabela.entre61e71%>");js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser >= 72 && p_numUser <= 82) {fms1Price =  parseFloat("<%=tabela.entre72e82%>");js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser >= 83 && p_numUser <= 93) {fms1Price =  parseFloat("<%=tabela.entre83e93%>"); js_precoUnitario.value = formatarReal(fms1Price);
-                } else if (p_numUser > 93) {fms1Price =  parseFloat("<%=tabela.maisque93%>"); js_precoUnitario.value = formatarReal(fms1Price);
+                if (p_numUser <= 2) { fms1Price =  tabela.menosque2;js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser == 3) {fms1Price =  tabela.igual3; js_precoUnitario.value =formatarReal(fms1Price);
+                } else if (p_numUser == 4) {fms1Price =  tabela.igual4; js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser == 5) {fms1Price =  tabela.igual5; js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser == 6) {fms1Price =  tabela.igual6; js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser == 7) {fms1Price =  tabela.igual7; js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser == 8) {fms1Price =  tabela.igual8; js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser == 9) {fms1Price =  tabela.igual9; js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 10 && p_numUser <= 12) {fms1Price =  tabela.entre10e12; js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 13 && p_numUser <= 15) {fms1Price =  tabela.entre13e15; js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 16 && p_numUser <= 21) {fms1Price =  tabela.entre16e21; js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 22 && p_numUser <= 27) {fms1Price =  tabela.entre22e27; js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 28 && p_numUser <= 38) {fms1Price =  tabela.entre28e38; js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 39 && p_numUser <= 49) {fms1Price =  tabela.entre39e49; js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 50 && p_numUser <= 60) {fms1Price =  tabela.entre50e60; js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 61 && p_numUser <= 71) {fms1Price =  tabela.entre61e71;js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 72 && p_numUser <= 82) {fms1Price =  tabela.entre72e82;js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser >= 83 && p_numUser <= 93) {fms1Price =  tabela.entre83e93; js_precoUnitario.value = formatarReal(fms1Price);
+                } else if (p_numUser > 93) {fms1Price =  tabela.maisque93; js_precoUnitario.value = formatarReal(fms1Price);
                 } else {js_precoUnitario.value = "";}
             }
 
@@ -492,7 +499,7 @@
             }
             
             function DEFINE_valorBase() {
-                valorBase = parseFloat("<%=tabela.valorBase%>");
+                valorBase = tabela.valorBase;
                 js_valorBase.value = formatarReal(parseFloat(valorBase.toFixed(2)));
             }
             
@@ -529,7 +536,7 @@
                 }
             }
             function DEFINE_setupWhiteLabel() {
-                js_setupWhiteLabel.value = formatarReal(parseFloat("<%=tabela.setupWhiteLabel%>"));
+                js_setupWhiteLabel.value = formatarReal(tabela.setupWhiteLabel);
             }
             
             function STATUScheckBox2() {
@@ -539,7 +546,7 @@
                 }
             }
             function DEFINE_mensalidadeWhiteLabel() {
-                js_mensalidadeWhiteLabel.value = formatarReal(parseFloat("<%=tabela.mensalidadeWhiteLabel%>"));
+                js_mensalidadeWhiteLabel.value = formatarReal(tabela.mensalidadeWhiteLabel);
             }
 
             function STATUScheckBox3() {
@@ -549,7 +556,7 @@
                 }
             }
             function DEFINE_dashboardAvancado() {
-                js_dashboardAvancado.value = formatarReal(parseFloat("<%=tabela.dashboardAvancado%>"));
+                js_dashboardAvancado.value = formatarReal(tabela.dashboardAvancado);
             }
             
             function STATUScheckBox4() {
@@ -559,7 +566,7 @@
                 }
             }
             function DEFINE_sla() {
-                js_sla.value = formatarReal(parseFloat("<%=tabela.sla%>"));
+                js_sla.value = formatarReal(tabela.sla);
             }
             
             function STATUScheckBox5() {
@@ -571,25 +578,25 @@
                 }
             }
             function DEFINE_horaDesenvolvimento() {
-                js_horaDesenvolvimento.value = formatarReal(parseFloat("<%=tabela.horaDeDesenvolvimento%>"));
+                js_horaDesenvolvimento.value = formatarReal(tabela.horaDeDesenvolvimento);
             }
             function DEFINE_qntHorasDev() {
                 js_qntHorasDev.value = parseFloat("<%=proposta.qntd_horas%>");
             }
             
             function DEFINE_mensalidadeOpcionais() {
-                mensalidadeOpcionais = parseFloat("<%=tabela.mensalidadeWhiteLabel%>") + parseFloat("<%=tabela.dashboardAvancado%>") + parseFloat("<%=tabela.sla%>");
+                mensalidadeOpcionais = tabela.mensalidadeWhiteLabel + tabela.dashboardAvancado + tabela.sla;
                 js_mensalidadeOpcionais.value = formatarReal(parseFloat(mensalidadeOpcionais.toFixed(2)));
 
             }
 
             function DEFINE_setupWhiteLabelUnico() {
-                setupWhiteLabelUnico = parseFloat("<%=tabela.setupWhiteLabel%>");
+                setupWhiteLabelUnico = tabela.setupWhiteLabel;
                 js_setupWhiteLabelUnico.value = formatarReal(parseFloat(setupWhiteLabelUnico.toFixed(2)));
             }
 
             function DEFINE_desenvolvimentoUnico() {
-                desenvolvimentoUnico = parseFloat("<%=tabela.horaDeDesenvolvimento%>") * parseFloat("<%=proposta.qntd_horas%>")
+                desenvolvimentoUnico = tabela.horaDeDesenvolvimento * parseFloat("<%=proposta.qntd_horas%>")
                 js_desenvolvimentoUnico.value = formatarReal(parseFloat(desenvolvimentoUnico.toFixed(2)));
             }
 

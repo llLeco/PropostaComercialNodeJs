@@ -3,6 +3,7 @@ const validator = require('validator');
 
 const PropostaSchema = new mongoose.Schema({
   account_id: { type: String, required: true },
+  tabela_id: { type: String, required: true },
   razao_social: { type: String, required: true },
   nome: { type: String, required: true },
   cnpj: { type: String, required: true },
@@ -80,6 +81,7 @@ Proposta.prototype.cleanUp = function() {
 
   this.body = {
     account_id: this.body.account_id,
+    tabela_id: this.body.tabela_id,
     razao_social: this.body.razao_social,
     nome: this.body.nome,
     cnpj: this.body.cnpj,

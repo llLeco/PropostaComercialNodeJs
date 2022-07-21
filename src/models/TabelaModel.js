@@ -114,6 +114,12 @@ Tabela.buscaTabelas = async function() {
         return tabelas;
 }
 
+Tabela.buscaUltimaTabela = async function() {
+    const allTabelas = await Tabela.buscaTabelas();
+    const tabelas = allTabelas[allTabelas.length - 1];
+    return tabelas;
+}
+
 
 
 
