@@ -372,20 +372,15 @@
             // const index = tab.findIndex(obj => {return obj._id == tabId});
             const index = myIndexOf(tab,tabId)
 
-
             function myIndexOf(tab,obj) {
                 for (var i = 0; i < tab.length; i++) {
-                    if (tab[i] === obj) {
+                    if (tab[i]._id === obj) {
                         return i;
                     }
                 }
                 return -1;
             }
-
-
-            // const tab[index] = tab[index];
-
-
+            
             // HEADER
             let js_razaoSocial = document.getElementById('razaoSocial');
             let js_cnpj = document.getElementById('cnpj');
