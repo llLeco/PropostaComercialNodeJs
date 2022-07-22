@@ -372,8 +372,10 @@
             let tab = JSON.parse(EjsTab);
             console.log(tab);
             
-            const tabId = "<%=proposta.tabela_id%>";
+            const tabId = "<%-proposta.tabela_id%>";
             console.log(tabId);
+            console.log(`<%-proposta%>`);
+
 
             // const tabId = removeAspasDuplas('< %-JSON.stringify(proposta.tabela_id)%>');
             // const index = tab.findIndex(obj => {return obj._id == tabId});
