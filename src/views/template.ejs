@@ -367,13 +367,19 @@
         <script type="text/javascript">
 
             var EjsTab = '<%-JSON.stringify(tabela)%>';
+            console.log(EjsTab);
+
             let tab = JSON.parse(EjsTab);
+            console.log(tab);
             
-            // const tabId = "< %=proposta.tabela_id%>";
-            const tabId = removeAspasDuplas('<%-JSON.stringify(proposta.tabela_id)%>');
+            const tabId = "<%=proposta.tabela_id%>";
             console.log(tabId);
+
+            // const tabId = removeAspasDuplas('< %-JSON.stringify(proposta.tabela_id)%>');
             // const index = tab.findIndex(obj => {return obj._id == tabId});
-            const index = myIndexOf(tab,tabId)
+
+            const index = myIndexOf(tab,tabId);
+            console.log(index);
 
             function myIndexOf(tab,obj) {
                 for (var i = 0; i < tab.length; i++) {
@@ -382,10 +388,6 @@
                     }
                 }
                 return -1;
-            }
-
-            function removeAspasDuplas(str) {
-                return str.replace(/\"/g, "");
             }
 
 
