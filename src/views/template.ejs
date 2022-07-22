@@ -367,7 +367,8 @@
         <script type="text/javascript">
 
             var EjsTab = '<%-JSON.stringify(tabela)%>';
-            console.log(tabela);
+            console.log(EjsTab);
+            console.log(`<%-tabela%>`);
 
             let tab = JSON.parse(EjsTab);
             console.log(tab);
