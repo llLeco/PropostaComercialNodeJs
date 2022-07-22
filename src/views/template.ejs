@@ -368,7 +368,9 @@
 
             var EjsTab = '<%-JSON.stringify(tabela)%>';
             let tab = JSON.parse(EjsTab);
-            const tabId = "<%=proposta.tabela_id%>";
+            
+            // const tabId = "< %=proposta.tabela_id%>";
+            const tabId = removeAspasDuplas('<%-JSON.stringify(proposta.tabela_id)%>');
             console.log(tabId);
             // const index = tab.findIndex(obj => {return obj._id == tabId});
             const index = myIndexOf(tab,tabId)
@@ -380,6 +382,10 @@
                     }
                 }
                 return -1;
+            }
+
+            function removeAspasDuplas(str) {
+                return str.replace(/\"/g, "");
             }
 
 
