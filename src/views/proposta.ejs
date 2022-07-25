@@ -1,5 +1,8 @@
 <%- include('includes/head-proposta') %>
     <%- include('includes/nav') %>
+
+    <div class="cadastro">
+
         <% if(proposta._id) { %>
             <form action="/proposta/edit/<%= proposta._id %>" method="POST">
                 <% } else { %>
@@ -10,11 +13,11 @@
                             <input type="hidden" name="tabela_id" value=<%=tabela._id %>>
                             
 
-                            <div class="conteiner" style="margin: 20px;">
+                            <div class="container my-4"> 
 
-                                <div class="row" style="width: 70%; margin: auto;">
+                                <div class="row" style="width: 80%; margin: auto;">
 
-                                    <div class="col-md-12 text-center">
+                                    <div class="col-md-12 text-center my-4">
                                         <h1>Cadastro de Proposta</h1>
                                         <p>Preencha o Formulario abaixo para gerar uma proposta comercial</p>
                                     </div>
@@ -47,7 +50,7 @@
                                         <h2 style="text-align: center; font-size: 28px;">Pacote básico</h2>
 
                                         <div class="col-6 my-4">
-                                            <p class="" style="text-align:center; font-weight: bold;">FSM: Gestão de Ordens de Serviço</p>
+                                            <p class="" style="text-align:center; font-weight: bold;font-size: 14px;">FSM: Gestão de Ordens de Serviço</p>
 
                                             <label for="">Número de usuários</label>
                                             <input value="<%= proposta.numero_usuarios %>" type="text" class="form-control" id="numero_usuarios"
@@ -61,7 +64,7 @@
                                         </div>
 
                                         <div class="col-6 my-4">
-                                            <p class="" style="text-align:center; font-weight: bold;">PCM: Gestão de Manutenção de Ativos </p>
+                                            <p class="" style="text-align:center; font-weight: bold;font-size: 14px;">PCM: Gestão de Manutenção de Ativos </p>
 
                                             <label for="">Número de ativos</label>
                                             <input value="<%= proposta.numero_ativos %>" type="text" class="form-control" id="numero_ativos"
@@ -177,6 +180,7 @@
                             </div>
 
                     </form>
+                </div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -293,7 +297,12 @@
 
         //AJUSTE POR VOLUME
         let ajustePorVolume = document.getElementById("ajuste_por_volume").value;
-        document.getElementById("pcm2").innerHTML = "ajuste por volume: " + ajustePorVolume + "%";
+        if(ajustePorVolume == ""){
+            document.getElementById("pcm2").innerHTML = "ajuste por volume: " +  "0%";
+        } else { 
+            document.getElementById("pcm2").innerHTML = "ajuste por volume: " + ajustePorVolume + "%";
+        }
+       
 
         // PRECO UNITARIO COM AJUSTE
         let pricefix2 = (1 - ajustePorVolume/100)* parseFloat("<%=tabela.valorBase%>");
@@ -328,10 +337,6 @@
         //TAXA UNICA DE ATIVACAO
         let taxaUnicaAtivacao = document.getElementById("taxa_unica_ativacao").value;
         document.getElementById("prevTxUnicaAtivacao").innerHTML = "taxa única de ativação: R$" + taxaUnicaAtivacao;
-
-
-
-
 
         if (document.getElementById("setupWhiteLabelCheckbox").checked) {
             document.getElementById("prevTxUnicaWhiteLabel").innerHTML = "taxa única whitelabel: R$<%= tabela.setupWhiteLabel %>";

@@ -1,3 +1,25 @@
 body, html {
     width: 100%;
+    background-color: #f8f9fa;
 }
+.cadastro{
+    width: 85%;
+    /* justify-content: center; */
+    /* align-items: center; */
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    background-color: #ffffff;
+}
+
+#tabelaBtn{
+    text-align: center;
+    padding: 15px;
+    margin-right: 10%;
+    width: 200px;
+}
+
+
+
+
+

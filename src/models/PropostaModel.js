@@ -58,14 +58,8 @@ Proposta.prototype.valida = function() {
   if(!validator.isNumeric(this.body.numero_usuarios)) {
     this.errors.push('Número de usuários deve ser um número.');
   }
-  if(!validator.isNumeric(this.body.desconto)) {
-    this.errors.push('Desconto deve ser um número.');
-  }
   if(!validator.isNumeric(this.body.numero_ativos)) {
     this.errors.push('Número de ativos deve ser um número.');
-  }
-  if(!validator.isNumeric(this.body.ajuste_por_volume)) {
-    this.errors.push('Ajuste de volume deve ser um número.');
   }
   if(!validator.isNumeric(this.body.taxa_unica_ativacao)) {
     this.errors.push('Taxa única de ativação deve ser um número.');
