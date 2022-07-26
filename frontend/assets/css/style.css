@@ -51,13 +51,13 @@ body{
   opacity: 0.3;
 }
 
-footer {
-  height:80px;   /* Height of the footer */
-  background: white;
-  padding: 20px;
-  margin-top: -60px;
-  margin-bottom: 0px;
+#footer1{
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
+
 form {
   position: absolute;
   margin-top: 80px;

@@ -1,19 +1,28 @@
-<footer class="d-flex flex-wrap justify-content-between align-items-center my-4 border-top">
-  <p class="col-md-6 text-muted justify-content-center" style="margin:auto;">Iliot ©2020</p>
 
-  <ul class="nav col-md-6 justify-content-end">
-    <li class="nav-item"><a href="/" class="nav-link px-2 text-dark">Início</a></li>
-    <li class="nav-item"><a href="/proposta/index" class="nav-link px-2 text-dark"> Nova Proposta</a></li>
-    <% if(user) { %>
-    <li class="nav-item"><a href="/login/logout" class="nav-link px-2 text-dark">Sair</a></li>
-    <% } else { %>
-    <li class="nav-item"><a href="/login/index" class="nav-link px-2 text-dark">Entrar</a></li>
-    <% } %>
+<footer id="footer1" class="bg-light text-center text-lg-start">
+  <div id="footerContainer" class="container-fluid g-0 " style="padding: 0px; margin:auto;">
+    <div class="row" style="border:0px;margin-right:0;margin-left:0;max-width:100%;">
 
-  </ul>
+      <div class="col-12 border-top" style="margin: auto; padding: 10px 0px;">
+
+        <ul class="nav list-unstyled mb-0 justify-content-center ">
+          <li class="nav-item"><a href="/" class="nav-link px-2 text-dark">Início</a></li>
+          <li class="nav-item"><a href="/proposta/index" class="nav-link px-2 text-dark"> Nova Proposta</a></li>
+          <% if(user) { %>
+            <li class="nav-item"><a href="/login/logout" class="nav-link px-2 text-dark">Sair</a></li>
+          <% } else { %>
+            <li class="nav-item"><a href="/login/index" class="nav-link px-2 text-dark">Entrar</a></li>
+          <% } %>
+        </ul>
+
+      </div>
+
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);"> Iliot ©2020 | powered by INOVAR.TECH </div>
 </footer>
-    
-    <script src="/frontend/assets/js/index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-  </body>
+
+<script src="/frontend/assets/js/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+
 </html>
